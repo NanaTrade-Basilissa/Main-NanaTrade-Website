@@ -10,9 +10,9 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Basilissa | A Ghanaian Hospitality Group",
+  title: "NanaTrade | A Ghanaian Group of Companies",
   description:
-    "Basilissa is a Ghanaian hospitality group building exceptional experiences through people, quality, culture and growth.",
+    "NanaTrade is a Ghanaian group of companies, including Basilissa, built around people, quality, culture and growth.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

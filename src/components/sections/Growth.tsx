@@ -23,8 +23,8 @@ export function Growth() {
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mt-6 text-lg leading-relaxed text-paper/75">
-              Basilissa is built to grow through new brands, new partnerships and new
-              locations, without ever losing sight of what got us here.
+              Basilissa is built to grow through new partnerships and new locations,
+              without ever losing sight of what got us here.
             </p>
           </Reveal>
           <Reveal delay={0.2} className="mt-10 flex flex-wrap items-center justify-center gap-4">

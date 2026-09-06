@@ -9,15 +9,27 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { cn } from "@/lib/utils";
 
-const NAV_LINKS = [
-  { label: "About", href: "#about" },
-  { label: "Our Brands", href: "#brands" },
-  { label: "Our Philosophy", href: "#philosophy" },
-  { label: "Leadership", href: "#leadership" },
-  { label: "Careers", href: "#careers" },
-];
+interface NavLink {
+  label: string;
+  href: string;
+}
 
-export function Navbar() {
+interface NavbarLogo {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+}
+
+interface NavbarProps {
+  logo: NavbarLogo;
+  homeHref?: string;
+  navLinks: NavLink[];
+  ctaLabel: string;
+  ctaHref: string;
+}
+
+export function Navbar({ logo, homeHref = "/", navLinks, ctaLabel, ctaHref }: NavbarProps) {
   const [solid, setSolid] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const ticking = useRef(false);
@@ -59,26 +71,26 @@ export function Navbar() {
       )}
     >
       <Container className="flex h-20 items-center justify-between">
-        <Link href="#" className="flex items-center shrink-0">
+        <Link href={homeHref} className="flex items-center shrink-0">
           <Image
-            src="/logos/basilisssa-nanatrade.svg"
-            alt="Basilissa, a NanaTrade company"
-            width={962}
-            height={232}
+            src={logo.src}
+            alt={logo.alt}
+            width={logo.width}
+            height={logo.height}
             priority
             className="h-10 sm:h-11 w-auto"
           />
         </Link>
 
         <nav aria-label="Primary" className="hidden lg:flex items-center gap-9">
-          {NAV_LINKS.map((link) => (
+          {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
               className={cn(
                 "text-[13px] font-semibold uppercase tracking-[0.12em] transition-colors duration-300",
-                "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-basilissa-yellow",
-                light ? "text-paper/90 hover:text-basilissa-yellow" : "text-ink/80 hover:text-ink",
+                "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent",
+                light ? "text-paper/90 hover:text-accent" : "text-ink/80 hover:text-ink",
               )}
             >
               {link.label}
@@ -87,8 +99,8 @@ export function Navbar() {
         </nav>
 
         <div className="hidden lg:block">
-          <Button href="#growth" variant={light ? "outline-light" : "primary"} className="h-11 sm:h-11">
-            Partner With Us
+          <Button href={ctaHref} variant={light ? "outline-light" : "primary"} className="h-11 sm:h-11">
+            {ctaLabel}
           </Button>
         </div>
 
@@ -99,7 +111,7 @@ export function Navbar() {
           aria-controls="mobile-nav"
           onClick={() => setMobileOpen((v) => !v)}
           className={cn(
-            "lg:hidden inline-flex size-10 items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-basilissa-yellow",
+            "lg:hidden inline-flex size-10 items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent",
             light ? "text-paper" : "text-ink",
           )}
         >
@@ -119,7 +131,7 @@ export function Navbar() {
             className="lg:hidden overflow-hidden bg-paper border-b border-border"
           >
             <Container className="flex flex-col py-6 gap-1">
-              {NAV_LINKS.map((link) => (
+              {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
@@ -130,12 +142,12 @@ export function Navbar() {
                 </a>
               ))}
               <Button
-                href="#growth"
+                href={ctaHref}
                 variant="primary"
                 className="mt-5 w-full"
                 onClick={() => setMobileOpen(false)}
               >
-                Partner With Us
+                {ctaLabel}
               </Button>
             </Container>
           </motion.nav>

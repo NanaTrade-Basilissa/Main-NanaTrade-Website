@@ -2,39 +2,51 @@ import Image from "next/image";
 import { Reveal } from "@/components/motion/Reveal";
 import { Container } from "@/components/ui/Container";
 
-const companyLinks = [
-  { label: "About", href: "#about" },
-  { label: "Our Story", href: "#story" },
-  { label: "Our Brands", href: "#brands" },
-  { label: "Our Philosophy", href: "#philosophy" },
-  { label: "Leadership", href: "#leadership" },
-  { label: "Careers", href: "#careers" },
-];
+interface FooterLink {
+  label: string;
+  href: string;
+}
 
-const legalLinks = [
+interface FooterLogo {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+}
+
+interface FooterProps {
+  logo: FooterLogo;
+  blurb: string;
+  companyLinks: FooterLink[];
+  legalLinks?: FooterLink[];
+  contactEmail: string;
+  copyrightLine: string;
+  tagline?: string;
+}
+
+const DEFAULT_LEGAL_LINKS: FooterLink[] = [
   { label: "Privacy Policy", href: "#" },
   { label: "Terms of Service", href: "#" },
   { label: "Customer Data Privacy", href: "#" },
   { label: "Governance & Charter", href: "#" },
 ];
 
-export function Footer() {
+export function Footer({
+  logo,
+  blurb,
+  companyLinks,
+  legalLinks = DEFAULT_LEGAL_LINKS,
+  contactEmail,
+  copyrightLine,
+  tagline,
+}: FooterProps) {
   return (
     <footer className="bg-ink text-paper">
       <Container className="pt-20 pb-10">
         <div className="grid grid-cols-1 gap-14 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <Reveal className="flex flex-col gap-6">
-            <Image
-              src="/logos/basilisssa-nanatrade.svg"
-              alt="Basilissa, a NanaTrade company"
-              width={962}
-              height={232}
-              className="h-11 w-auto"
-            />
-            <p className="max-w-xs text-sm leading-relaxed text-paper/60">
-              A Ghanaian hospitality group building exceptional experiences through people,
-              quality, culture and growth.
-            </p>
+            <Image src={logo.src} alt={logo.alt} width={logo.width} height={logo.height} className="h-11 w-auto" />
+            <p className="max-w-xs text-sm leading-relaxed text-paper/60">{blurb}</p>
           </Reveal>
 
           <Reveal delay={0.05}>
@@ -46,7 +58,7 @@ export function Footer() {
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className="text-sm text-paper/75 hover:text-basilissa-yellow transition-colors duration-300"
+                    className="text-sm text-paper/75 hover:text-accent transition-colors duration-300"
                   >
                     {link.label}
                   </a>
@@ -64,7 +76,7 @@ export function Footer() {
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-sm text-paper/75 hover:text-basilissa-yellow transition-colors duration-300"
+                    className="text-sm text-paper/75 hover:text-accent transition-colors duration-300"
                   >
                     {link.label}
                   </a>
@@ -81,10 +93,10 @@ export function Footer() {
               <li>Accra, Ghana</li>
               <li>
                 <a
-                  href="mailto:info@basilissa.com"
-                  className="hover:text-basilissa-yellow transition-colors duration-300"
+                  href={`mailto:${contactEmail}`}
+                  className="hover:text-accent transition-colors duration-300"
                 >
-                  info@basilissa.com
+                  {contactEmail}
                 </a>
               </li>
             </ul>
@@ -93,10 +105,9 @@ export function Footer() {
 
         <div className="mt-16 flex flex-col gap-4 border-t border-paper/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-paper/45">
-            © {new Date().getFullYear()} Basilissa. Part of the NanaTrade Group. All rights
-            reserved.
+            © {new Date().getFullYear()} {copyrightLine}
           </p>
-          <p className="text-xs text-paper/45">Hospitality, built around people.</p>
+          {tagline && <p className="text-xs text-paper/45">{tagline}</p>}
         </div>
       </Container>
     </footer>

@@ -6,26 +6,26 @@ const pillars = [
   {
     index: "01",
     name: "People",
-    description: "Every experience begins with the people who create it and the people it's for.",
+    description: "The people across our companies come first, always.",
   },
   {
     index: "02",
     name: "Quality",
-    description: "Consistency and craft in every detail, from the kitchen to the table.",
+    description: "One shared standard of quality, in every company we build.",
   },
   {
     index: "03",
     name: "Culture",
-    description: "Rooted in Ghanaian heritage, expressed through hospitality and design.",
+    description: "Ghanaian heritage at the center of every business we run.",
   },
   {
     index: "04",
     name: "Growth",
-    description: "Part of NanaTrade's growing family of Ghanaian companies.",
+    description: "Expanding through new companies, not just bigger ones.",
   },
 ];
 
-export function MoreThanRestaurant() {
+export function AboutNanaTrade() {
   return (
     <section id="about" className="bg-cream py-28 sm:py-32 lg:py-40">
       <Container>
@@ -33,13 +33,13 @@ export function MoreThanRestaurant() {
           <div className="lg:col-span-7">
             <Reveal>
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.08] text-ink text-balance">
-                Basilissa is more than a restaurant.
+                NanaTrade is more than one company.
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
               <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink/65">
-                We are a hospitality brand built around people, experience and growth, part of
-                the NanaTrade group of companies.
+                We are a group built around people, quality, culture and growth, the
+                foundation every one of our companies is built on.
               </p>
             </Reveal>
 
@@ -63,7 +63,7 @@ export function MoreThanRestaurant() {
           <div className="lg:col-span-5 lg:pt-16">
             <ParallaxImage
               src="/images/basilissa-tableware.jpg"
-              alt="Handcrafted tableware and freshly prepared dishes at a Basilissa restaurant"
+              alt="Detail from one of NanaTrade's companies"
               className="aspect-[4/5] w-full"
               sizes="(min-width: 1024px) 40vw, 100vw"
               strength={30}

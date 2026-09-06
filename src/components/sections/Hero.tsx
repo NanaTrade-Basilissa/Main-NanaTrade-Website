@@ -7,7 +7,15 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { heroImageEntrance } from "@/lib/animations";
 
-export function Hero() {
+interface HeroProps {
+  image: { src: string; alt: string };
+  heading: string;
+  subtext: string;
+  ctaLabel: string;
+  ctaHref: string;
+}
+
+export function Hero({ image, heading, subtext, ctaLabel, ctaHref }: HeroProps) {
   const reduceMotion = useReducedMotion();
 
   return (
@@ -18,14 +26,7 @@ export function Hero() {
         animate={reduceMotion ? undefined : "visible"}
         variants={reduceMotion ? undefined : heroImageEntrance}
       >
-        <Image
-          src="/images/basilissa-atmosphere.jpg"
-          alt="Guests and staff sharing a warm evening at a Basilissa restaurant"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
+        <Image src={image.src} alt={image.alt} fill priority sizes="100vw" className="object-cover" />
       </motion.div>
 
       <div
@@ -37,19 +38,19 @@ export function Hero() {
         <div className="max-w-3xl">
           <FadeUp as="h1" delay={0.15}>
             <span className="block text-[2.6rem] leading-[1.05] font-semibold tracking-tight text-paper sm:text-6xl lg:text-7xl text-balance">
-              Hospitality, built around people.
+              {heading}
             </span>
           </FadeUp>
 
           <FadeUp delay={0.4}>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-paper/80 sm:text-xl">
-              Building exceptional experiences through quality, culture and people.
+              {subtext}
             </p>
           </FadeUp>
 
           <FadeUp delay={0.65} className="mt-10">
-            <Button href="#about" variant="inverse" showArrow>
-              Discover Basilissa
+            <Button href={ctaHref} variant="inverse" showArrow>
+              {ctaLabel}
             </Button>
           </FadeUp>
         </div>

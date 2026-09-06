@@ -90,7 +90,7 @@ export function CustomerExperience() {
             <div className="relative w-px shrink-0 bg-border">
               <div
                 ref={lineRef}
-                className="absolute inset-x-0 top-0 h-full origin-top scale-y-0 bg-basilissa-yellow"
+                className="absolute inset-x-0 top-0 h-full origin-top scale-y-0 bg-accent"
               />
             </div>
 

@@ -31,8 +31,9 @@ export function OurStory() {
             <Reveal delay={0.16}>
               <p className="mt-6 text-lg leading-relaxed text-ink/65">
                 Basilissa began with a single idea: hospitality done with genuine care. That
-                idea shaped a restaurant, then a way of working, and now the foundation for a
-                group of brands built on the same principles of people, quality and culture.
+                idea shaped a restaurant, then a way of working, and now a growing brand within
+                the NanaTrade family, built on the same principles of people, quality and
+                culture.
               </p>
             </Reveal>
           </div>

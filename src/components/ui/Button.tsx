@@ -7,11 +7,11 @@ const base =
   "group inline-flex h-12 sm:h-13 items-center justify-center gap-2.5 px-7 sm:px-8 " +
   "font-medium text-[13px] sm:text-sm tracking-[0.04em] uppercase " +
   "transition-[background-color,color,border-color,transform] duration-300 ease-out " +
-  "active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-basilissa-yellow";
+  "active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 
 const variants = {
-  primary: "bg-ink text-paper hover:bg-basilissa-yellow hover:text-ink",
-  inverse: "bg-basilissa-yellow text-ink hover:bg-ink hover:text-paper",
+  primary: "bg-ink text-paper hover:bg-accent hover:text-on-accent",
+  inverse: "bg-accent text-on-accent hover:bg-ink hover:text-paper",
   outline: "border border-current bg-transparent hover:bg-ink hover:text-paper hover:border-ink",
   "outline-light": "border border-paper/50 text-paper bg-transparent hover:bg-paper hover:text-ink",
 } as const;

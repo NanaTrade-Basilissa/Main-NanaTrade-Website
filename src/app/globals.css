@@ -10,16 +10,40 @@
   --color-paper: #ffffff;
   --color-cream: #f7f3ea;
   --color-cream-deep: #ece5d4;
-
-  /* Basilissa yellow — a major brand colour, not a button accent. */
-  --color-basilissa-yellow: #f5b400;
-  --color-yellow-deep: #c99000;
-  --color-yellow-soft: #fdf1cf;
-
-  /* Secondary supporting colour — used sparingly. */
-  --color-blue: #1f3a5f;
-
   --color-border: #e3dccb;
+
+  /* Basilissa brand colours — sampled from the Basilissa logo. */
+  --color-basilissa-yellow: #f0cf02;
+  --color-basilissa-yellow-deep: #a89101;
+  --color-basilissa-yellow-soft: #fdf9e1;
+  --color-basilissa-blue: #33a3e0;
+  --color-basilissa-blue-deep: #24729d;
+
+  /* NanaTrade brand colour — sampled from the NanaTrade logo. */
+  --color-nanatrade-blue: #0291b3;
+  --color-nanatrade-blue-deep: #01667d;
+  --color-nanatrade-blue-soft: #e1f2f6;
+}
+
+/*
+ * Per-site accent scoping. Shared components (Button, Philosophy, Footer,
+ * etc.) style themselves with `accent` / `accent-deep` / `on-accent` rather
+ * than a hard-coded brand colour. Wrapping a subtree in `.theme-basilissa`
+ * or `.theme-nanatrade` decides what those resolve to — including nesting
+ * one inside the other, e.g. the Basilissa card on the NanaTrade homepage.
+ */
+.theme-basilissa {
+  --color-accent: var(--color-basilissa-yellow);
+  --color-accent-deep: var(--color-basilissa-yellow-deep);
+  --color-accent-soft: var(--color-basilissa-yellow-soft);
+  --color-on-accent: var(--color-ink);
+}
+
+.theme-nanatrade {
+  --color-accent: var(--color-nanatrade-blue);
+  --color-accent-deep: var(--color-nanatrade-blue-deep);
+  --color-accent-soft: var(--color-nanatrade-blue-soft);
+  --color-on-accent: var(--color-paper);
 }
 
 @theme inline {
@@ -28,11 +52,16 @@
   --color-paper: var(--color-paper);
   --color-cream: var(--color-cream);
   --color-cream-deep: var(--color-cream-deep);
-  --color-basilissa-yellow: var(--color-basilissa-yellow);
-  --color-yellow-deep: var(--color-yellow-deep);
-  --color-yellow-soft: var(--color-yellow-soft);
-  --color-blue: var(--color-blue);
   --color-border: var(--color-border);
+
+  --color-basilissa-yellow: var(--color-basilissa-yellow);
+  --color-basilissa-blue: var(--color-basilissa-blue);
+  --color-nanatrade-blue: var(--color-nanatrade-blue);
+
+  --color-accent: var(--color-accent);
+  --color-accent-deep: var(--color-accent-deep);
+  --color-accent-soft: var(--color-accent-soft);
+  --color-on-accent: var(--color-on-accent);
 
   --font-sans: var(--font-manrope);
 }

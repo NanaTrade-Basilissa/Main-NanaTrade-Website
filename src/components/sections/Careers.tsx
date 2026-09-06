@@ -3,12 +3,20 @@ import { Reveal } from "@/components/motion/Reveal";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 
-export function Careers() {
+interface CareersProps {
+  image: { src: string; alt: string };
+  heading: string;
+  body: string;
+  ctaLabel: string;
+  ctaHref: string;
+}
+
+export function Careers({ image, heading, body, ctaLabel, ctaHref }: CareersProps) {
   return (
     <section id="careers" className="grid grid-cols-1 lg:grid-cols-2">
       <ParallaxImage
-        src="/images/basilissa-team.jpg"
-        alt="Basilissa team members preparing for service together"
+        src={image.src}
+        alt={image.alt}
         className="h-[50vh] w-full lg:h-full lg:min-h-[640px]"
         sizes="(min-width: 1024px) 50vw, 100vw"
         strength={34}
@@ -23,18 +31,15 @@ export function Careers() {
           </Reveal>
           <Reveal delay={0.08}>
             <h2 className="mt-5 max-w-md text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight leading-[1.1] text-paper text-balance">
-              Build something meaningful with us.
+              {heading}
             </h2>
           </Reveal>
           <Reveal delay={0.16}>
-            <p className="mt-6 max-w-md text-lg leading-relaxed text-paper/70">
-              We grow by investing in our people: training, mentorship and real opportunity
-              for those who share our standard for hospitality.
-            </p>
+            <p className="mt-6 max-w-md text-lg leading-relaxed text-paper/70">{body}</p>
           </Reveal>
           <Reveal delay={0.24} className="mt-10">
-            <Button href="#" variant="inverse" showArrow>
-              Join the Basilissa Family
+            <Button href={ctaHref} variant="inverse" showArrow>
+              {ctaLabel}
             </Button>
           </Reveal>
         </Container>
