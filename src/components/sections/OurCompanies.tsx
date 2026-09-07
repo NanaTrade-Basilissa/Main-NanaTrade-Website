@@ -31,11 +31,11 @@ const companies: Company[] = [
 
 export function OurCompanies() {
   return (
-    <section id="companies" className="bg-cream py-28 sm:py-32 lg:py-40">
+    <section id="brands" className="bg-cream py-28 sm:py-32 lg:py-40">
       <Container>
         <SectionHeading
           className="text-ink mb-16 lg:mb-20"
-          heading="Our Companies"
+          heading="Our Brands"
           lede="NanaTrade's portfolio starts with Basilissa, with new companies joining the group as it grows."
         />
 
@@ -80,13 +80,13 @@ export function OurCompanies() {
             </Reveal>
           ))}
 
-          <Reveal delay={0.1} className="lg:col-span-4">
+          <Reveal delay={0.1} className="lg:col-span-4 hidden">
             <div className="flex h-full min-h-[280px] flex-col justify-between border border-dashed border-ink/25 p-8 sm:p-10">
               <span className="text-xs font-semibold uppercase tracking-[0.14em] text-ink/45">
                 What&apos;s Next
               </span>
               <p className="text-xl font-semibold leading-snug text-ink/70">
-                More companies are joining the NanaTrade portfolio as the group grows.
+                More brands are joining the NanaTrade portfolio as the group grows.
               </p>
             </div>
           </Reveal>
