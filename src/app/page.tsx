@@ -29,13 +29,13 @@ export default function Home() {
         logo={NANATRADE_LOGO}
         navLinks={[
           { label: "About", href: "#about" },
-          { label: "Our Companies", href: "#companies" },
+          { label: "Our Brands", href: "#brands" },
           { label: "Our Philosophy", href: "#philosophy" },
           { label: "Leadership", href: "#leadership" },
           { label: "Careers", href: "#careers" },
         ]}
         ctaLabel="Our Companies"
-        ctaHref="#companies"
+        ctaHref="#brands"
       />
       <main>
         <Hero
@@ -45,13 +45,13 @@ export default function Home() {
           }}
           heading="A group of companies, built around people."
           subtext="NanaTrade brings together a growing portfolio of Ghanaian companies, including Basilissa, united by a shared standard for quality and culture."
-          ctaLabel="Explore Our Companies"
-          ctaHref="#companies"
+          ctaLabel="Explore Our Brands"
+          ctaHref="#brands"
         />
         <AboutNanaTrade />
         <OurCompanies />
         <Philosophy heading="Our philosophy shapes every company we build." />
-        <Leadership />
+        {/* <Leadership /> */}
         <Careers
           image={{
             src: "/images/basilissa-hospitality-manager.jpg",
@@ -62,14 +62,14 @@ export default function Home() {
           ctaLabel="Join the NanaTrade Family"
           ctaHref="#"
         />
-        <FinalCTA heading="Experience NanaTrade." ctaLabel="Explore Our Companies" ctaHref="#companies" />
+        <FinalCTA heading="Experience NanaTrade." ctaLabel="Explore Our Brands" ctaHref="#brands" />
       </main>
       <Footer
         logo={NANATRADE_LOGO}
         blurb="A Ghanaian group of companies, including Basilissa, built around people, quality, culture and growth."
         companyLinks={[
           { label: "About", href: "#about" },
-          { label: "Our Companies", href: "#companies" },
+          { label: "Our Brands", href: "#brands" },
           { label: "Our Philosophy", href: "#philosophy" },
           { label: "Leadership", href: "#leadership" },
           { label: "Careers", href: "#careers" },
