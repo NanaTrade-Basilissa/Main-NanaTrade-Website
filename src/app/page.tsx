@@ -51,7 +51,7 @@ const NAV_ITEMS: NavItem[] = [
   { label: 'CAREERS', href: '#careers' },
   { label: 'CONTACT US', href: '#contact' },
   { label: 'BLOG/NEWS', href: '#news' },
-  { label: 'ORDER NOW', href: '#order', isCta: true },
+  { label: 'ORDER NOW', href: 'https://basilissagh.com/', isCta: true },
 ];
 
 const BRANDS: BrandItem[] = [
@@ -262,14 +262,16 @@ export default function Home() {
                 </a>
               ))}
 
+  
               {/* Centered Brand Logo */}
-              <a href="#home" className="px-4 transition-transform hover:scale-105 duration-300">
-                <svg width="180" height="36" viewBox="0 0 240 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="12" y="4" width="216" height="3" fill="#38a8a4" />
-                  <text x="12" y="38" fontFamily="'Montserrat', sans-serif" fontWeight="900" fontStyle="italic" fontSize="34" fill="#38a8a4" letterSpacing="-1">
-                    NanaTrade
-                  </text>
-                </svg>
+              {/* Centered Brand Logo */}
+              <a href="#home" className="px-4 flex flex-col items-center transition-transform hover:scale-105 duration-300">
+                <div className="w-full h-1 bg-[#38a8a4] mb-1.5 rounded-full" />
+                <img
+                  src="/images/logo.png" 
+                  alt="NanaTrade Logo"
+                  className="h-14 sm:h-16 w-auto object-contain"
+                />
               </a>
 
               {NAV_ITEMS.slice(3).map((item) => (
