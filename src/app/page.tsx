@@ -14,7 +14,9 @@ import {
   Users, 
   Target, 
   HeartHandshake,
-  ShoppingBag
+  ShoppingBag,
+  Linkedin,
+  Facebook,
 } from 'lucide-react';
 
 interface NavItem {
@@ -102,23 +104,61 @@ const TEAM_MEMBERS: TeamMember[] = [
     name: 'Rev Akoto',
     role: 'Head Of Audit',
     image: '/images/rev.jpeg',
+    linkedin: 'https://linkedin.com/in/rev-akoto',
+    facebook: 'https://facebook.com/rev-akoto',
+    email: 'rev.akoto@nanatrade.com',
   },
   {
     name: 'Derrick Cruise',
     role: 'Chief Finance Officer',
     image: '/images/cruise.jpeg',
+    linkedin: 'https://linkedin.com/in/derrick-cruise',
+    facebook: 'https://facebook.com/derrick-cruise',
+    email: 'derrick.cruise@nanatrade.com',
   },
   {
     name: 'PS Cho',
     role: 'Head Of Stores',
     image: '/images/cho.jpeg',
+    linkedin: 'https://linkedin.com/in/ps-cho',
+    facebook: 'https://facebook.com/ps-cho',
+    email: 'ps.cho@nanatrade.com',
   },
   {
     name: 'Frank Aidoo',
     role: 'General Manager',
     image: '/images/frank.jpeg',
+    linkedin: 'https://linkedin.com/in/frank-aidoo',
+    facebook: 'https://facebook.com/frank-aidoo',
+    email: 'frank.aidoo@nanatrade.com',
   },
 ];
+const carouselItems = [
+  {
+    id: 'carousel-item-1',
+    image: '/images/hero.png',
+    title: 'Discover Our Services',
+    description: 'Explore the wide range of services we offer to meet your needs.',
+  },
+  {
+    id: 'carousel-item-2',
+    image: '/images/aa.jpeg',
+    title: 'Our Commitment to Quality',
+    description: 'We ensure top-notch quality in every product and service we provide.',
+  },
+  {
+    id: 'carousel-item-3',
+    image: '/images/bb.jpeg',
+    title: 'Join Our Team',
+    description: 'Be a part of our dynamic and passionate team driving excellence.',
+  },
+   {
+    id: 'carousel-item-4',
+    image: '/images/cc.jpeg',
+    title: 'Join Our Team',
+    description: 'Be a part of our dynamic and passionate team driving excellence.',
+  },
+]
 
 const NEWS_ARTICLES: NewsArticle[] = [
   {
@@ -139,6 +179,7 @@ const NEWS_ARTICLES: NewsArticle[] = [
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [carouselIndex, setCarouselIndex] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -146,6 +187,14 @@ export default function Home() {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // 2. SET UP THE AUTOMATIC CAROUSEL TIMER
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCarouselIndex((prev) => (prev + 1) % carouselItems.length);
+    }, 3000);
+    return () => clearInterval(timer);
   }, []);
 
   return (
@@ -229,31 +278,89 @@ export default function Home() {
       `}</style>
 
       {/* Hero Section */}
-      <section id="home" className="relative w-full min-h-screen flex flex-col justify-between items-center bg-gradient-to-b from-[#1e3c41]/85 to-[#143237]/90 bg-[url('/images/hero.png')] bg-center bg-no-repeat  text-white">
-        
-        {/* Navigation Navbar */}
-        <header className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 ${scrolled ? 'bg-[#004d55]/95 backdrop-blur-md py-3 shadow-lg border-b border-white/10' : 'bg-transparent py-5 border-b border-white/30'}`}>
-          <div className="max-w-7xl mx-auto px-6 flex justify-between md:justify-center items-center relative">
-            
-            {/* Mobile Hamburger Button */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden text-white p-2 focus:outline-none z-50"
-              aria-label="Toggle Navigation Menu"
-            >
-              {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-            </button>
+      <section id="home" className="relative w-full min-h-screen flex flex-col justify-between items-center bg-[#0d1b1e] text-white overflow-hidden">
+      
+      {/* Background Sliding Carousel Loop */}
+      <div className="absolute inset-0 z-0">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={carouselItems[carouselIndex].id}
+            initial={{ opacity: 0, scale: 1.08 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: `url(${carouselItems[carouselIndex].image})` }}
+          />
+        </AnimatePresence>
 
-            {/* Mobile Logo View */}
-            <div className="md:hidden flex-1 text-center">
-              <a href="#home" className="inline-block">
-                <span className="font-extrabold text-2xl tracking-tighter text-[#38a8a4] italic">NanaTrade</span>
+        {/* Gradient Overlay for Text Contrast */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1e3c41]/85 via-[#143237]/80 to-[#0d1b1e]/90" />
+      </div>
+
+      {/* Navigation Navbar */}
+      <header className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 ${scrolled ? 'bg-[#004d55]/95 backdrop-blur-md py-3 shadow-lg border-b border-white/10' : 'bg-transparent py-5 border-b border-white/30'}`}>
+        <div className="max-w-7xl mx-auto px-6 flex justify-between md:justify-center items-center relative">
+          
+          {/* Mobile Hamburger Button */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden text-white p-2 focus:outline-none z-50"
+            aria-label="Toggle Navigation Menu"
+          >
+            {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+
+          {/* Mobile Logo View */}
+          <div className="md:hidden flex-1 text-center">
+            <a href="#home" className="inline-block">
+              <span className="font-extrabold text-2xl tracking-tighter text-[#38a8a4] italic">NanaTrade</span>
+            </a>
+          </div>
+
+          {/* Desktop Navigation Bar */}
+          <nav className="hidden md:flex items-center justify-center gap-8 w-full">
+            {NAV_ITEMS.slice(0, 3).map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                className="text-white text-xs font-black uppercase tracking-wider hover:text-[#38a8a4] transition-colors relative group py-1"
+              >
+                {item.label}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#38a8a4] transition-all duration-300 group-hover:w-full"></span>
               </a>
-            </div>
+            ))}
 
-            {/* Desktop Navigation Bar */}
-            <nav className="hidden md:flex items-center justify-center gap-8 w-full">
-              {NAV_ITEMS.slice(0, 3).map((item) => (
+            {/* Centered Brand Logo */}
+            <a href="#home" className="px-4 flex flex-col items-center transition-transform hover:scale-105 duration-300">
+              <div className="w-full h-1 bg-[#38a8a4] mb-1.5 rounded-full" />
+              <img
+                src="/images/logo.png" 
+                alt="NanaTrade Logo"
+                className="h-14 sm:h-16 w-auto object-contain"
+              />
+            </a>
+
+            {NAV_ITEMS.slice(3).map((item) => (
+              item.isCta ? (
+                <motion.a
+                  key={item.label}
+                  href={item.href}
+                  whileHover={{ scale: 1.08, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="cta-animated-btn text-[#0d1b1e] px-7 py-3 rounded-full font-black text-xs tracking-widest uppercase shadow-xl hover:shadow-2xl transition-all duration-300 relative inline-flex items-center justify-center gap-2 group overflow-hidden border border-amber-300/60"
+                >
+                  <motion.span
+                    animate={{ rotate: [0, -10, 10, -10, 0] }}
+                    transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
+                  >
+                    <ShoppingBag className="w-4 h-4 text-[#0d1b1e] group-hover:scale-110 transition-transform" />
+                  </motion.span>
+                  <span>{item.label}</span>
+                  
+                  <span className="absolute inset-0 rounded-full bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+                </motion.a>
+              ) : (
                 <a
                   key={item.label}
                   href={item.href}
@@ -262,125 +369,119 @@ export default function Home() {
                   {item.label}
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#38a8a4] transition-all duration-300 group-hover:w-full"></span>
                 </a>
-              ))}
+              )
+            ))}
+          </nav>
+        </div>
 
-              {/* Centered Brand Logo */}
-              <a href="#home" className="px-4 flex flex-col items-center transition-transform hover:scale-105 duration-300">
-                <div className="w-full h-1 bg-[#38a8a4] mb-1.5 rounded-full" />
-                <img
-                  src="/images/logo.png" 
-                  alt="NanaTrade Logo"
-                  className="h-14 sm:h-16 w-auto object-contain"
-                />
-              </a>
-
-              {NAV_ITEMS.slice(3).map((item) => (
-                item.isCta ? (
-                  <motion.a
-                    key={item.label}
-                    href={item.href}
-                    whileHover={{ scale: 1.08, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="cta-animated-btn text-[#0d1b1e] px-7 py-3 rounded-full font-black text-xs tracking-widest uppercase shadow-xl hover:shadow-2xl transition-all duration-300 relative inline-flex items-center justify-center gap-2 group overflow-hidden border border-amber-300/60"
-                  >
-                    <motion.span
-                      animate={{ rotate: [0, -10, 10, -10, 0] }}
-                      transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
-                    >
-                      <ShoppingBag className="w-4 h-4 text-[#0d1b1e] group-hover:scale-110 transition-transform" />
-                    </motion.span>
-                    <span>{item.label}</span>
-                    
-                    <span className="absolute inset-0 rounded-full bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-                  </motion.a>
-                ) : (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    className="text-white text-xs font-black uppercase tracking-wider hover:text-[#38a8a4] transition-colors relative group py-1"
-                  >
-                    {item.label}
-                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#38a8a4] transition-all duration-300 group-hover:w-full"></span>
-                  </a>
-                )
-              ))}
-            </nav>
-          </div>
-
-          {/* Mobile Drawer Navigation with Animated CTA */}
-          <AnimatePresence>
-            {mobileMenuOpen && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-                className="md:hidden bg-[#004d55] border-t border-white/10 overflow-hidden"
-              >
-                <div className="flex flex-col items-center py-6 gap-5">
-                  {NAV_ITEMS.map((item) => (
-                    item.isCta ? (
-                      <motion.a
-                        key={item.label}
-                        href={item.href}
-                        onClick={() => setMobileMenuOpen(false)}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="cta-animated-btn text-[#0d1b1e] px-9 py-3.5 rounded-full font-black text-xs uppercase tracking-widest shadow-xl flex items-center gap-2 mt-2 border border-amber-300/60"
-                      >
-                        <ShoppingBag className="w-4 h-4 text-[#0d1b1e]" />
-                        <span>{item.label}</span>
-                      </motion.a>
-                    ) : (
-                      <a
-                        key={item.label}
-                        href={item.href}
-                        onClick={() => setMobileMenuOpen(false)}
-                        className="text-white text-sm font-black uppercase tracking-wider hover:text-[#38a8a4] transition-colors"
-                      >
-                        {item.label}
-                      </a>
-                    )
-                  ))}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </header>
-
-        {/* Hero Title & Action */}
-        <div className="z-10 text-center flex flex-col items-center justify-center px-4 pt-32 pb-20 my-auto max-w-4xl">
-          <motion.h1
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="textured-title font-black text-5xl sm:text-7xl md:text-8xl leading-none uppercase tracking-wider mb-8"
-          >
-            <span className="block">WE&apos;RE</span>
-            <span className="block">PREMIUM</span>
-          </motion.h1>
-
-          <motion.div
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-          >
-            <a
-              href="#brands"
-              className="bg-[#38a8a4] text-white px-9 py-4 rounded-full font-black text-xs sm:text-sm tracking-wider uppercase shadow-xl hover:bg-[#2e918d] hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 inline-flex items-center gap-2 group"
+        {/* Mobile Drawer Navigation with Animated CTA */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden bg-[#004d55] border-t border-white/10 overflow-hidden"
             >
-              EXPLORE OUR BRANDS
-              <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </a>
-          </motion.div>
-        </div>
+              <div className="flex flex-col items-center py-6 gap-5">
+                {NAV_ITEMS.map((item) => (
+                  item.isCta ? (
+                    <motion.a
+                      key={item.label}
+                      href={item.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="cta-animated-btn text-[#0d1b1e] px-9 py-3.5 rounded-full font-black text-xs uppercase tracking-widest shadow-xl flex items-center gap-2 mt-2 border border-amber-300/60"
+                    >
+                      <ShoppingBag className="w-4 h-4 text-[#0d1b1e]" />
+                      <span>{item.label}</span>
+                    </motion.a>
+                  ) : (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="text-white text-sm font-black uppercase tracking-wider hover:text-[#38a8a4] transition-colors"
+                    >
+                      {item.label}
+                    </a>
+                  )
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </header>
 
-        {/* Bottom Organic SVG Wave Divider */}
-        <div className="relative w-full overflow-hidden leading-none z-10 mt-auto">
-          <svg className="relative block w-full h-[60px] sm:h-[90px] md:h-[120px]" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M 0,40 C 300,100 450,15 700,50 C 950,85 1080,70 1200,45 L 1200,120 L 0,120 Z" fill="#ffffff"></path>
-          </svg>
-        </div>
-      </section>
+      {/* Hero Content & Active Slide Text */}
+      <div className="z-10 text-center flex flex-col items-center justify-center px-4 pt-36 pb-20 my-auto max-w-4xl">
+        <motion.h1
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="textured-title font-black text-5xl sm:text-7xl md:text-8xl leading-none uppercase tracking-wider mb-4"
+        >
+          <span className="block">WE&apos;RE</span>
+          <span className="block">PREMIUM</span>
+        </motion.h1>
+
+        {/* Animated Slide Title & Description */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={carouselItems[carouselIndex].id}
+            initial={{ y: 15, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -15, opacity: 0 }}
+            transition={{ duration: 0.5 }}
+            className="mb-8"
+          >
+            <h2 className="text-xl sm:text-2xl font-bold text-[#38a8a4] tracking-wide mb-2">
+              {carouselItems[carouselIndex].title}
+            </h2>
+            <p className="text-sm sm:text-base text-gray-200 max-w-md mx-auto font-medium">
+              {carouselItems[carouselIndex].description}
+            </p>
+          </motion.div>
+        </AnimatePresence>
+
+        <motion.div
+          initial={{ y: 30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.3, duration: 0.8 }}
+          className="flex flex-col items-center gap-6"
+        >
+          <a
+            href="#brands"
+            className="bg-[#38a8a4] text-white px-9 py-4 rounded-full font-black text-xs sm:text-sm tracking-wider uppercase shadow-xl hover:bg-[#2e918d] hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 inline-flex items-center gap-2 group"
+          >
+            EXPLORE OUR BRANDS
+            <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </a>
+
+          {/* Slide Indicator Dots */}
+          <div className="flex items-center gap-2.5">
+            {carouselItems.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCarouselIndex(index)}
+                aria-label={`Switch to slide ${index + 1}`}
+                className={`h-2.5 rounded-full transition-all duration-300 ${
+                  carouselIndex === index ? 'w-8 bg-[#38a8a4]' : 'w-2.5 bg-white/40 hover:bg-white/70'
+                }`}
+              />
+            ))}
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Bottom Organic SVG Wave Divider */}
+      <div className="relative w-full overflow-hidden leading-none z-10 mt-auto">
+        <svg className="relative block w-full h-[60px] sm:h-[90px] md:h-[120px]" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path d="M 0,40 C 300,100 450,15 700,50 C 950,85 1080,70 1200,45 L 1200,120 L 0,120 Z" fill="#ffffff"></path>
+        </svg>
+      </div>
+    </section>
 
       {/* About Section */}
       <section id="about" className="py-20 md:py-28 bg-white">
@@ -652,31 +753,63 @@ export default function Home() {
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {TEAM_MEMBERS.map((member, idx) => (
-              <motion.div
-                key={member.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 pb-5 group border border-slate-100 hover:-translate-y-2"
-              >
-                <div className="h-48 overflow-hidden">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-                <h4 className="text-sm font-extrabold text-slate-800 mt-4">
-                  {member.name}
-                </h4>
-                <span className="text-xs text-slate-500 block mt-1">
-                  {member.role}
-                </span>
-              </motion.div>
-            ))}
-          </div>
+              {TEAM_MEMBERS.map((member, idx) => (
+                <motion.div
+                  key={member.name}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 pb-5 group border border-slate-100 hover:-translate-y-2 text-center"
+                >
+                  {/* Image Container with Social Overlay on Hover */}
+                  <div className="h-48 overflow-hidden relative">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+
+                    {/* Hover Overlay */}
+                    <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center gap-3">
+                      <a
+                        href={member.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2.5 bg-white/90 hover:bg-[#38a8a4] hover:text-white text-slate-800 rounded-full transition-all duration-200 hover:scale-110 shadow-md"
+                        aria-label={`${member.name}'s LinkedIn`}
+                      >
+                        <Linkedin className="w-4 h-4" />
+                      </a>
+                      <a
+                        href={member.facebook}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2.5 bg-white/90 hover:bg-[#38a8a4] hover:text-white text-slate-800 rounded-full transition-all duration-200 hover:scale-110 shadow-md"
+                        aria-label={`${member.name}'s Facebook`}
+                      >
+                        <Facebook className="w-4 h-4" />
+                      </a>
+                      <a
+                        href={`mailto:${member.email}`}
+                        className="p-2.5 bg-white/90 hover:bg-[#38a8a4] hover:text-white text-slate-800 rounded-full transition-all duration-200 hover:scale-110 shadow-md"
+                        aria-label={`Email ${member.name}`}
+                      >
+                        <Mail className="w-4 h-4" />
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Member Details */}
+                  <h4 className="text-sm font-extrabold text-slate-800 mt-4 px-2">
+                    {member.name}
+                  </h4>
+                  <span className="text-xs text-slate-500 block mt-1 px-2">
+                    {member.role}
+                  </span>
+                </motion.div>
+              ))}
+            </div>
         </div>
       </section>
 
