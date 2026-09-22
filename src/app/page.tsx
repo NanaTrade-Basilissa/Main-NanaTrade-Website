@@ -748,18 +748,34 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Col 2 */}
-          <div>
-            <h4 className="text-sm font-extrabold uppercase tracking-wider mb-4">
-              QUICK LINKS
-            </h4>
-            <ul className="space-y-2.5 text-slate-300">
-              <li><a href="#about" className="hover:text-[#38a8a4] transition-colors">About Us</a></li>
-              <li><a href="#brands" className="hover:text-[#38a8a4] transition-colors">Our Brands</a></li>
-              <li><a href="#careers" className="hover:text-[#38a8a4] transition-colors">Careers</a></li>
-              <li><a href="#news" className="hover:text-[#38a8a4] transition-colors">News</a></li>
-            </ul>
-          </div>
+          {/* Col 2 - Quick Links */}
+      <div>
+        <h4 className="text-sm font-extrabold uppercase tracking-widest text-[#38a8a4] mb-4">
+          QUICK LINKS
+        </h4>
+        <ul className="space-y-2.5 text-slate-200 font-medium">
+          <li>
+            <a href="#about" className="hover:text-[#38a8a4] transition-colors duration-200 inline-block">
+              About Us
+            </a>
+          </li>
+          <li>
+            <a href="#brands" className="hover:text-[#38a8a4] transition-colors duration-200 inline-block">
+              Our Brands
+            </a>
+          </li>
+          <li>
+            <a href="#careers" className="hover:text-[#38a8a4] transition-colors duration-200 inline-block">
+              Careers
+            </a>
+          </li>
+          <li>
+            <a href="#news" className="hover:text-[#38a8a4] transition-colors duration-200 inline-block">
+              News
+            </a>
+          </li>
+        </ul>
+      </div>
 
           {/* Col 3 */}
           <div>
