@@ -51,7 +51,7 @@ const NAV_ITEMS: NavItem[] = [
   { label: 'CAREERS', href: '#careers' },
   { label: 'CONTACT US', href: '#contact' },
   { label: 'BLOG/NEWS', href: '#news' },
-  { label: 'ORDER NOW', href: 'https://basilissagh.com/', isCta: true },
+  { label: 'ORDER NOW', href: 'https://basilissa.web.app', isCta: true },
 ];
 
 const BRANDS: BrandItem[] = [
