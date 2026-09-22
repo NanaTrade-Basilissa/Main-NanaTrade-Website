@@ -229,7 +229,7 @@ export default function Home() {
       `}</style>
 
       {/* Hero Section */}
-      <section id="home" className="relative w-full min-h-screen flex flex-col justify-between items-center bg-gradient-to-b from-[#1e3c41]/85 to-[#143237]/90 bg-[url('/images/hero.png')] bg-center bg-cover bg-no-repeat text-white">
+      <section id="home" className="relative w-full min-h-screen flex flex-col justify-between items-center bg-gradient-to-b from-[#1e3c41]/85 to-[#143237]/90 bg-[url('/images/hero.png')] bg-center bg-no-repeat  text-white">
         
         {/* Navigation Navbar */}
         <header className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 ${scrolled ? 'bg-[#004d55]/95 backdrop-blur-md py-3 shadow-lg border-b border-white/10' : 'bg-transparent py-5 border-b border-white/30'}`}>
@@ -377,7 +377,7 @@ export default function Home() {
         {/* Bottom Organic SVG Wave Divider */}
         <div className="relative w-full overflow-hidden leading-none z-10 mt-auto">
           <svg className="relative block w-full h-[60px] sm:h-[90px] md:h-[120px]" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M 0,40 C 150,110 350,10 550,25 C 750,40 1000,110 1200,60 L 1200,120 L 0,120 Z" fill="#ffffff"></path>
+            <path d="M 0,40 C 300,100 450,15 700,50 C 950,85 1080,70 1200,45 L 1200,120 L 0,120 Z" fill="#ffffff"></path>
           </svg>
         </div>
       </section>
