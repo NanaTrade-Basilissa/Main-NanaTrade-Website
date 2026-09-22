@@ -25,6 +25,7 @@ interface NavItem {
 
 interface BrandItem {
   id: string;
+  image: string;
   name: string;
   description: string;
   link: string;
@@ -57,14 +58,16 @@ const NAV_ITEMS: NavItem[] = [
 const BRANDS: BrandItem[] = [
   {
     id: 'basilissa',
+    image: '/images/basiliss.png',
     name: 'BASILISSA',
     description: 'Premier restaurant & food hospitality service delivering authentic dining experiences across Ghana.',
     link: '#',
     tag: 'Hospitality & Dining'
   },
   {
-    id: 'brand-alpha',
-    name: 'BRAND ALPHA',
+    id: 'nomimun',
+    image: '/images/nominom.png',
+    name: 'Nomimun',
     description: 'Premium consumer products distributed across major retail outlets with unmatched quality.',
     link: '#',
     tag: 'FMCG Distribution'
@@ -98,7 +101,7 @@ const TEAM_MEMBERS: TeamMember[] = [
   {
     name: 'Rev Akoto',
     role: 'Head Of Audit',
-    image: '/images/akoto.jpeg',
+    image: '/images/rev.jpeg',
   },
   {
     name: 'Derrick Cruise',
@@ -119,21 +122,20 @@ const TEAM_MEMBERS: TeamMember[] = [
 
 const NEWS_ARTICLES: NewsArticle[] = [
   {
-    title: 'NanaTrade Expands Distribution Network Across Regions',
-    summary: 'New infrastructure additions enable faster logistics turnaround times for all enterprise partners and retail hubs...',
-    image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=800&q=80',
-    date: 'March 14, 2026',
-    category: 'Corporate Growth'
+    title: 'Surge in Restaurant Franchisee Bankruptcies Driven by Rising Costs',
+    summary: 'High operational costs and labor expenses trigger restructuring among major multi-unit franchise operators as foot traffic shifts.',
+    image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80',
+    date: 'September 18, 2026',
+    category: 'Industry Trends'
   },
   {
-    title: 'Brand Innovation Workshop & Strategic Meeting',
-    summary: 'Key stakeholders gather in Accra to align product roadmaps, quality standards, and upcoming market expansions...',
-    image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80',
-    date: 'February 28, 2026',
-    category: 'Innovation'
+    title: 'Acceleration of AI & Automation Across Restaurant Operations',
+    summary: 'Restaurants aggressively integrate AI voice-assisted drive-thrus, automated kitchen tools, and dynamic inventory analytics to boost efficiency.',
+    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80',
+    date: 'September 10, 2026',
+    category: 'Technology & Food'
   },
 ];
-
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -262,8 +264,6 @@ export default function Home() {
                 </a>
               ))}
 
-  
-              {/* Centered Brand Logo */}
               {/* Centered Brand Logo */}
               <a href="#home" className="px-4 flex flex-col items-center transition-transform hover:scale-105 duration-300">
                 <div className="w-full h-1 bg-[#38a8a4] mb-1.5 rounded-full" />
@@ -459,27 +459,41 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="bg-white p-8 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between text-center group border border-slate-100 hover:-translate-y-2"
+                className="bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group border border-slate-100 hover:-translate-y-2 text-left"
               >
                 <div>
-                  {brand.tag && (
-                    <span className="inline-block text-[10px] font-bold uppercase tracking-wider bg-[#f5f8f8] text-[#007c89] px-3 py-1 rounded-full mb-3">
-                      {brand.tag}
-                    </span>
-                  )}
-                  <h3 className="text-lg font-extrabold text-[#007c89] mb-3 group-hover:text-[#38a8a4] transition-colors">
-                    {brand.name}
-                  </h3>
-                  <p className="text-slate-500 text-xs sm:text-sm leading-relaxed mb-6">
-                    {brand.description}
-                  </p>
+                  {/* Brand Image Container */}
+                  <div className="relative h-48 w-full bg-slate-50 flex items-center justify-center p-6 border-b border-slate-100 overflow-hidden">
+                    <img
+                      src={brand.image}
+                      alt={brand.name}
+                      className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500"
+                    />
+                    {brand.tag && (
+                      <span className="absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wider bg-white/90 backdrop-blur-sm text-[#007c89] px-3 py-1 rounded-full shadow-sm border border-slate-100">
+                        {brand.tag}
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="p-6 text-center">
+                    <h3 className="text-lg font-extrabold text-[#007c89] mb-3 group-hover:text-[#38a8a4] transition-colors">
+                      {brand.name}
+                    </h3>
+                    <p className="text-slate-500 text-xs sm:text-sm leading-relaxed mb-6">
+                      {brand.description}
+                    </p>
+                  </div>
                 </div>
-                <a
-                  href={brand.link}
-                  className="text-[#007c89] font-bold text-xs uppercase tracking-wider inline-flex items-center justify-center gap-1 hover:text-[#38a8a4] transition-colors"
-                >
-                  DISCOVER <ArrowRight className="w-3.5 h-3.5" />
-                </a>
+
+                <div className="px-6 pb-6 text-center">
+                  <a
+                    href={brand.link}
+                    className="text-[#007c89] font-bold text-xs uppercase tracking-wider inline-flex items-center justify-center gap-1 hover:text-[#38a8a4] transition-colors"
+                  >
+                    DISCOVER <ArrowRight className="w-3.5 h-3.5" />
+                  </a>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -599,7 +613,7 @@ export default function Home() {
           >
             <div className="md:col-span-5 relative min-h-[300px] md:min-h-full">
               <img
-                src="/images/ceo.jpeg"
+                src="/images/ceo.png"
                 alt="Julius Yaw Baiooa Agbenyelia - CEO"
                 className="w-full h-full object-cover"
               />
@@ -759,7 +773,7 @@ export default function Home() {
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-[#38a8a4]" />
-                <span>+233 24 000 0000</span>
+                <span>+233 30 123 4567</span>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-[#38a8a4]" />
@@ -769,8 +783,8 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="max-w-6xl mx-auto px-6 pt-6 border-t border-white/10 text-center text-xs text-slate-400">
-          <p>&copy; {new Date().getFullYear()} NanaTrade Limited. All rights reserved.</p>
+        <div className="max-w-6xl mx-auto px-6 pt-6 border-t border-white/10 text-center text-slate-400 text-xs">
+          © {new Date().getFullYear()} NanaTrade Limited. All rights reserved.
         </div>
       </footer>
     </div>
