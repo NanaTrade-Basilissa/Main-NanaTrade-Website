@@ -482,8 +482,22 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Watermark wrapper: About through Contact */}
+      <div className="relative bg-white">
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 z-0 pointer-events-none bg-repeat"
+          style={{
+            backgroundImage: 'url(/images/watermark.png)',
+            backgroundSize: '960px auto',
+            maskImage: 'linear-gradient(to bottom, transparent 0, #000 160px)',
+            WebkitMaskImage: 'linear-gradient(to bottom, transparent 0, #000 160px)',
+          }}
+        />
+        <div className="relative z-10">
+
       {/* About Section */}
-      <section id="about" className="py-20 md:py-28 bg-white">
+      <section id="about" className="py-20 md:py-28 bg-transparent">
         <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -533,7 +547,7 @@ export default function Home() {
       </section>
 
       {/* Our Brands Section */}
-      <section id="brands" className="py-20 md:py-28 bg-[#f5f8f8]">
+      <section id="brands" className="py-20 md:py-28 bg-[#f5f8f8]/60">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -600,7 +614,7 @@ export default function Home() {
       </section>
 
       {/* Our Philosophy Section */}
-      <section className="py-20 md:py-28 bg-white">
+      <section className="py-20 md:py-28 bg-transparent">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -645,7 +659,7 @@ export default function Home() {
       </section>
 
       {/* Careers Section */}
-      <section id="careers" className="py-20 md:py-28 bg-[#f5f8f8]">
+      <section id="careers" className="py-20 md:py-28 bg-[#f5f8f8]/60">
         <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -40 }}
@@ -691,7 +705,7 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="relative w-full overflow-hidden leading-none z-10 bg-[#f5f8f8]">
+      <div className="relative w-full overflow-hidden leading-none z-10 bg-[#f5f8f8]/60">
         <svg className="relative block w-full h-[60px] sm:h-[90px] md:h-[120px]" viewBox="0 0 1200 120" preserveAspectRatio="none">
           <path d="M0,0 C300,90 600,-40 900,60 C1050,110 1150,40 1200,20 L1200,120 L0,120 Z" fill="#007c89"></path>
         </svg>
@@ -733,7 +747,7 @@ export default function Home() {
       </section>
 
       {/* Team Section */}
-      <section className="py-20 md:py-28 bg-white">
+      <section className="py-20 md:py-28 bg-transparent">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -805,7 +819,7 @@ export default function Home() {
       </section>
 
       {/* News & Blog Section */}
-      <section id="news" className="py-20 md:py-28 bg-[#f5f8f8]">
+      <section id="news" className="py-20 md:py-28 bg-[#f5f8f8]/60">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -865,7 +879,7 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 md:py-28 bg-white">
+      <section id="contact" className="py-20 md:py-28 bg-transparent">
         <div className="max-w-6xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -921,6 +935,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+        </div>
+      </div>
 
       {/* Footer */}
       <footer className="bg-[#0d1b1e] text-white py-12 border-t border-white/10">
