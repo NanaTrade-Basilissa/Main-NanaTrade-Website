@@ -121,15 +121,15 @@ const TEAM_MEMBERS: TeamMember[] = [
     image: '/images/rev.jpeg',
     linkedin: 'https://linkedin.com/in/rev-akoto',
     facebook: 'https://facebook.com/rev-akoto',
-    email: 'rev.akoto@nanatrade.com',
+    email: 'rev.akoto@basilissagh.com',
   },
   {
     name: 'Derrick Cruise',
     role: 'Chief Finance Officer',
     image: '/images/cruise.jpeg',
-    linkedin: 'https://linkedin.com/in/derrick-cruise',
-    facebook: 'https://facebook.com/derrick-cruise',
-    email: 'derrick.cruise@nanatrade.com',
+    linkedin: 'https://www.linkedin.com/in/derrick-mensah-otu-4b930395/',
+    facebook: 'https://www.instagram.com/derrickcruise_?stkn=MXZwZ3UzZzh2YWs1cA%3D%3D&utm_source=qr',
+    email: 'cfo@basilissagh.com',
   },
   {
     name: 'PS Cho',
@@ -137,15 +137,15 @@ const TEAM_MEMBERS: TeamMember[] = [
     image: '/images/cho.jpeg',
     linkedin: 'https://linkedin.com/in/ps-cho',
     facebook: 'https://facebook.com/ps-cho',
-    email: 'ps.cho@nanatrade.com',
+    email: 'cw583@basilissagh.com',
   },
   {
     name: 'Frank Aidoo',
     role: 'General Manager',
     image: '/images/frank.jpeg',
     linkedin: 'https://linkedin.com/in/frank-aidoo',
-    facebook: 'https://facebook.com/frank-aidoo',
-    email: 'frank.aidoo@nanatrade.com',
+    facebook: '',
+    email: 'gm@basilissagh.com',
   },
 ];
 
@@ -724,7 +724,7 @@ export default function Home() {
             <div className="md:col-span-5 relative min-h-[300px] md:min-h-full">
               <img
                 src="/images/ceo.png"
-                alt="Julius Yaw Baiooa Agbenyelia - CEO"
+                alt="Julius Yaw Baidoo Agbenyelia - CEO"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -733,14 +733,43 @@ export default function Home() {
                 LEADERSHIP
               </span>
               <h3 className="text-2xl sm:text-3xl font-extrabold mb-1">
-                Julius Yaw Baiooa Agbenyelia
+                Julius Yaw Baidoo Agbenyelia
               </h3>
               <span className="text-xs font-semibold text-slate-300 mb-6 block">
                 CEO, NanaTrade Limited
               </span>
+
               <blockquote className="text-sm sm:text-base text-slate-100 italic leading-relaxed border-l-2 border-[#38a8a4] pl-4">
                 &ldquo;Our vision at NanaTrade Limited is centered on strategic growth, long-term partnerships, and delivering unmatched value across all consumer touchpoints.&rdquo;
               </blockquote>
+
+              <div className="flex items-center gap-3 mt-8">
+                <a
+                  href="https://www.linkedin.com/in/julius-agbenyelia"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2.5 bg-white/10 hover:bg-[#38a8a4] text-white rounded-full transition-all duration-200 hover:scale-110 border border-white/20 flex items-center justify-center"
+                  aria-label="Julius Yaw Baidoo Agbenyelia's LinkedIn"
+                >
+                  <LinkedinIcon className="w-4 h-4" />
+                </a>
+                <a
+                  href="https://www.facebook.com/julius.agbenyelia"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2.5 bg-white/10 hover:bg-[#38a8a4] text-white rounded-full transition-all duration-200 hover:scale-110 border border-white/20 flex items-center justify-center"
+                  aria-label="Julius Yaw Baidoo Agbenyelia's Facebook"
+                >
+                  <FacebookIcon className="w-4 h-4" />
+                </a>
+                <a
+                  href="mailto:ceo@basilissagh.com"
+                  className="p-2.5 bg-white/10 hover:bg-[#38a8a4] text-white rounded-full transition-all duration-200 hover:scale-110 border border-white/20 flex items-center justify-center"
+                  aria-label="Email Julius Yaw Baidoo Agbeneyfia"
+                >
+                  <Mail className="w-4 h-4" />
+                </a>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -897,17 +926,27 @@ export default function Home() {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="p-6 bg-[#f5f8f8] rounded-xl flex items-start gap-4">
+            <a
+              href="https://www.google.com/maps/place/Basilissa+Family+Restaurant,+Community+25,+Dawhenya/@5.7383125,0.0301433,884m/data=!3m2!1e3!4b1!4m6!3m5!1s0x10207fdd9d1581af:0x4352e2627b1304c2!8m2!3d5.7383125!4d0.0326586!16s%2Fg%2F11g6vjzj0h?hl=en&entry=ttu&g_ep=EgoyMDI2MDkyNy4wIKXMDSoASAFQAw%3D%3D"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open NanaTrade location in Google Maps"
+              className="group p-6 bg-[#f5f8f8] rounded-xl flex items-start gap-4 transition hover:shadow-md hover:bg-[#eef5f5]"
+            >
               <div className="p-3 bg-[#38a8a4]/10 text-[#007c89] rounded-lg">
                 <MapPin className="w-6 h-6" />
               </div>
+
               <div>
                 <h4 className="text-sm font-extrabold uppercase text-[#007c89] mb-1">LOCATION</h4>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed group-hover:text-[#007c89]">
                   Accra, Ghana - West Africa
                 </p>
+                <span className="text-xs font-semibold text-[#38a8a4] group-hover:underline">
+                  Open in Google Maps →
+                </span>
               </div>
-            </div>
+            </a>
 
             <div className="p-6 bg-[#f5f8f8] rounded-xl flex items-start gap-4">
               <div className="p-3 bg-[#38a8a4]/10 text-[#007c89] rounded-lg">
@@ -915,9 +954,12 @@ export default function Home() {
               </div>
               <div>
                 <h4 className="text-sm font-extrabold uppercase text-[#007c89] mb-1">PHONE</h4>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  +233 (0) 30 000 0000
-                </p>
+                <a
+                  href="tel:+233509876543"
+                  className="text-xs sm:text-sm text-slate-600 leading-relaxed hover:text-[#007c89]"
+                >
+                  +233 (0) 509 87 6543
+                </a>
               </div>
             </div>
 
@@ -925,13 +967,30 @@ export default function Home() {
               <div className="p-3 bg-[#38a8a4]/10 text-[#007c89] rounded-lg">
                 <Mail className="w-6 h-6" />
               </div>
-              <div>
+              <div className="min-w-0">
                 <h4 className="text-sm font-extrabold uppercase text-[#007c89] mb-1">EMAIL</h4>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  info@nanatrade.com
-                </p>
+                <a
+                  href="mailto:info@basilissagh.com"
+                  className="text-xs sm:text-sm text-slate-600 leading-relaxed break-all hover:text-[#007c89]"
+                >
+                  info@basilissagh.com
+                </a>
               </div>
             </div>
+          </div>
+
+          {/* Embedded Google Map */}
+          <div className="mt-8 w-full h-64 sm:h-80 md:h-96 rounded-xl overflow-hidden shadow-sm border border-slate-200">
+            <iframe
+              title="Basilissa Family Restaurant, Community 25, Dawhenya"
+              src="https://www.google.com/maps?q=Basilissa+Family+Restaurant,+Community+25,+Dawhenya&ll=5.7383125,0.0326586&z=16&output=embed"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </div>
         </div>
       </section>
