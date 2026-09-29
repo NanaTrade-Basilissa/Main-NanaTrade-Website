@@ -1,29 +1,29 @@
-// import type { Metadata } from "next";
-// import { Footer } from "@/components/layout/Footer";
-// import { Navbar } from "@/components/navigation/Navbar";
-// import { BusinessPrinciples } from "@/components/sections/BusinessPrinciples";
-// import { Careers } from "@/components/sections/Careers";
-// import { CustomerExperience } from "@/components/sections/CustomerExperience";
-// import { FinalCTA } from "@/components/sections/FinalCTA";
-// import { Growth } from "@/components/sections/Growth";
-// import { Hero } from "@/components/sections/Hero";
-// import { Leadership } from "@/components/sections/Leadership";
-// import { MoreThanRestaurant } from "@/components/sections/MoreThanRestaurant";
-// import { OurStory } from "@/components/sections/OurStory";
-// import { Philosophy } from "@/components/sections/Philosophy";
+import type { Metadata } from "next";
+import { Footer } from "@/components/layout/Footer";
+import { Navbar } from "@/components/navigation/Navbar";
+import { BusinessPrinciples } from "@/components/sections/BusinessPrinciples";
+import { Careers } from "@/components/sections/Careers";
+import { CustomerExperience } from "@/components/sections/CustomerExperience";
+import { FinalCTA } from "@/components/sections/FinalCTA";
+import { Growth } from "@/components/sections/Growth";
+import { Hero } from "@/components/sections/Hero";
+import { Leadership } from "@/components/sections/Leadership";
+import { MoreThanRestaurant } from "@/components/sections/MoreThanRestaurant";
+import { OurStory } from "@/components/sections/OurStory";
+import { Philosophy } from "@/components/sections/Philosophy";
 
-// export const metadata: Metadata = {
-//   title: "Basilissa | A NanaTrade Company",
-//   description:
-//     "Basilissa is a Ghanaian hospitality brand, part of the NanaTrade group of companies, building exceptional experiences through people, quality, culture and growth.",
-// };
+export const metadata: Metadata = {
+  title: "Basilissa | A NanaTrade Company",
+  description:
+    "Basilissa is a Ghanaian hospitality brand, part of the NanaTrade group of companies, building exceptional experiences through people, quality, culture and growth.",
+};
 
-// const BASILISSA_LOGO = {
-//   src: "/logos/basilisssa-nanatrade.svg",
-//   alt: "Basilissa, a NanaTrade company",
-//   width: 962,
-//   height: 232,
-// };
+const BASILISSA_LOGO = {
+  src: "/logos/basilisssa-nanatrade.svg",
+  alt: "Basilissa, a NanaTrade company",
+  width: 962,
+  height: 232,
+};
 
 export default function BasilissaPage() {
   return (
