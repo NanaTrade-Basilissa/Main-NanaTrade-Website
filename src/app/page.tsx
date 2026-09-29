@@ -143,8 +143,8 @@ const TEAM_MEMBERS: TeamMember[] = [
     name: 'Frank Aidoo',
     role: 'General Manager',
     image: '/images/frank.jpeg',
-    linkedin: 'https://linkedin.com/in/frank-aidoo',
-    facebook: '',
+    linkedin: 'https://www.linkedin.com/in/frank-aidoo-861747270?',
+    facebook: 'https://www.facebook.com/share/19RTgWWb5t/?mibextid=wwXIfr',
     email: 'gm@basilissagh.com',
   },
 ];
@@ -745,7 +745,7 @@ export default function Home() {
 
               <div className="flex items-center gap-3 mt-8">
                 <a
-                  href="https://www.linkedin.com/in/julius-agbenyelia"
+                  href="https://www.linkedin.com/in/julius-baidoo-ab9735225?" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-2.5 bg-white/10 hover:bg-[#38a8a4] text-white rounded-full transition-all duration-200 hover:scale-110 border border-white/20 flex items-center justify-center"
