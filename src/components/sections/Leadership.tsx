@@ -34,7 +34,7 @@ export function Leadership({
     </>
   ),
   image,
-  instagram = "https://www.instagram.com/basilissa",
+  instagram = "https://www.instagram.com/saved_julius101?stkn=MTRxbnppMjRqNTJpdw%3D%3D&utm_source=qr",
 }: LeadershipProps) {
   return (
     <section id={id} className="bg-cream py-28 sm:py-32 lg:py-40">

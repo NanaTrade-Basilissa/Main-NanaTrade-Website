@@ -681,7 +681,9 @@ export default function Home() {
             </p>
             <div className="pt-2">
               <a
-                href="#contact"
+                href="https://nanatrade-erp.odoo.com/jobs"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-[#38a8a4] text-white px-8 py-3.5 rounded-full font-extrabold text-xs tracking-wider uppercase shadow-md hover:bg-[#2e918d] hover:-translate-y-0.5 transition-all inline-block"
               >
                 SEE OPPORTUNITIES
