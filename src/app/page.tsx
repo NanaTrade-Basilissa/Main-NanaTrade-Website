@@ -37,7 +37,7 @@ interface TeamMember {
   role: string;
   image: string;
   linkedin: string;
-  facebook: string;
+  instagram: string;
   email: string;
 }
 
@@ -49,10 +49,12 @@ interface NewsArticle {
   category: string;
 }
 
-// Custom SVG for Facebook
-const FacebookIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
-  <svg className={className} fill="currentColor" viewBox="0 0 24 24">
-    <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.891h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
+// Custom SVG for Instagram
+const InstagramIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
+  <svg className={className} fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+    <circle cx="12" cy="12" r="4" />
+    <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
   </svg>
 );
 
@@ -120,7 +122,7 @@ const TEAM_MEMBERS: TeamMember[] = [
     role: 'Head Of Audit',
     image: '/images/rev.jpeg',
     linkedin: 'https://linkedin.com/in/rev-akoto',
-    facebook: 'https://facebook.com/rev-akoto',
+    instagram: 'https://www.instagram.com/rev-akoto',
     email: 'rev.akoto@basilissagh.com',
   },
   {
@@ -128,7 +130,7 @@ const TEAM_MEMBERS: TeamMember[] = [
     role: 'Chief Finance Officer',
     image: '/images/cruise.jpeg',
     linkedin: 'https://www.linkedin.com/in/derrick-mensah-otu-4b930395/',
-    facebook: 'https://www.instagram.com/derrickcruise_?stkn=MXZwZ3UzZzh2YWs1cA%3D%3D&utm_source=qr',
+    instagram: 'https://www.instagram.com/derrickcruise_?stkn=MXZwZ3UzZzh2YWs1cA%3D%3D&utm_source=qr',
     email: 'cfo@basilissagh.com',
   },
   {
@@ -136,7 +138,7 @@ const TEAM_MEMBERS: TeamMember[] = [
     role: 'Head Of Stores',
     image: '/images/cho.jpeg',
     linkedin: 'https://linkedin.com/in/ps-cho',
-    facebook: 'https://facebook.com/ps-cho',
+    instagram: 'https://www.instagram.com/ps-cho',
     email: 'cw583@basilissagh.com',
   },
   {
@@ -144,7 +146,7 @@ const TEAM_MEMBERS: TeamMember[] = [
     role: 'General Manager',
     image: '/images/frank.jpeg',
     linkedin: 'https://www.linkedin.com/in/frank-aidoo-861747270?',
-    facebook: 'https://www.facebook.com/share/19RTgWWb5t/?mibextid=wwXIfr',
+    instagram: 'https://www.instagram.com/frank-aidoo',
     email: 'gm@basilissagh.com',
   },
 ];
@@ -754,13 +756,13 @@ export default function Home() {
                   <LinkedinIcon className="w-4 h-4" />
                 </a>
                 <a
-                  href="https://www.facebook.com/julius.agbenyelia"
+                  href="https://www.instagram.com/julius.agbenyelia"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-2.5 bg-white/10 hover:bg-[#38a8a4] text-white rounded-full transition-all duration-200 hover:scale-110 border border-white/20 flex items-center justify-center"
-                  aria-label="Julius Yaw Baidoo Agbenyelia's Facebook"
+                  aria-label="Julius Yaw Baidoo Agbenyelia's Instagram"
                 >
-                  <FacebookIcon className="w-4 h-4" />
+                  <InstagramIcon className="w-4 h-4" />
                 </a>
                 <a
                   href="mailto:ceo@basilissagh.com"
@@ -817,13 +819,13 @@ export default function Home() {
                       <LinkedinIcon className="w-4 h-4" />
                     </a>
                     <a
-                      href={member.facebook}
+                      href={member.instagram}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="p-2.5 bg-white/90 hover:bg-[#38a8a4] hover:text-white text-slate-800 rounded-full transition-all duration-200 hover:scale-110 shadow-md flex items-center justify-center"
-                      aria-label={`${member.name}'s Facebook`}
+                      aria-label={`${member.name}'s Instagram`}
                     >
-                      <FacebookIcon className="w-4 h-4" />
+                      <InstagramIcon className="w-4 h-4" />
                     </a>
                     <a
                       href={`mailto:${member.email}`}
