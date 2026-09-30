@@ -184,7 +184,7 @@ const NEWS_ARTICLES: NewsArticle[] = [
       title: 'New Games Set to Excite Players This Season',
       summary: 'Discover the latest games, exciting new features, competitive challenges, and updates bringing fresh experiences to players.',
       details: 'This season’s game releases are bringing players fresh ways to play, from new features and challenges to updates that refresh familiar favorites. Competitive modes give players more opportunities to test their skills, while new content helps keep each session engaging. Whether you enjoy exploring new worlds or competing with others, there is something new to discover.',
-      images: ['./images/pic1.jpeg', './images/pic2.jpeg', './images/pic3.jpeg'],
+      images: ['./images/pic1.jpeg', './images/group1.jpeg', './images/group2.jpeg','./images/group3.jpeg','./images/group4.jpeg','./images/group6.jpeg', './images/group7.jpeg'],
       date: 'September 18, 2026',
       category: 'Gaming'
   },
@@ -192,7 +192,7 @@ const NEWS_ARTICLES: NewsArticle[] = [
     title: 'Acceleration of AI & Automation Across Restaurant Operations',
     summary: 'Restaurants aggressively integrate AI voice-assisted drive-thrus, automated kitchen tools, and dynamic inventory analytics to boost efficiency.',
     details: 'Restaurant teams are bringing automation into more parts of daily operations. AI voice tools can help manage drive-through orders, while automated kitchen equipment supports preparation during busy periods. Inventory analytics can help teams track stock and plan replenishment around changing demand. Together, these tools are intended to make service more consistent and help staff focus on the work that benefits most from a human touch.',
-    images: ['./images/new2.png', './images/new2.png', './images/new3.png'],
+    images: ['./images/new2.png', './images/new2.png', './images/new4.png'],
     date: 'September 10, 2026',
     category: 'Technology & Food'
   },
@@ -775,7 +775,7 @@ export default function Home() {
 
               <div className="flex items-center gap-3 mt-8">
                 <a
-                  href="https://www.linkedin.com/in/julius-baidoo-ab9735225?" 
+                  href="https://www.linkedin.com/in/julius-baidoo-ab9735225?utm_source=share_via&utm_content=profile&utm_medium=member_ios" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-2.5 bg-white/10 hover:bg-[#38a8a4] text-white rounded-full transition-all duration-200 hover:scale-110 border border-white/20 flex items-center justify-center"
@@ -942,7 +942,7 @@ export default function Home() {
           <AnimatePresence>
             {selectedArticle && (
               <motion.div
-                className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/70 p-4"
+                className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/80 p-4 backdrop-blur-sm"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -954,7 +954,7 @@ export default function Home() {
                   role="dialog"
                   aria-modal="true"
                   aria-labelledby="news-modal-title"
-                  className="relative w-full max-w-xl rounded-2xl bg-white text-left shadow-2xl"
+                  className="relative max-h-[calc(100dvh-2rem)] w-full max-w-xl overflow-hidden rounded-2xl border border-white/80 bg-white text-left shadow-[0_24px_80px_rgba(0,0,0,0.45)] ring-1 ring-black/10"
                   initial={{ opacity: 0, y: 20, scale: 0.97 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 10, scale: 0.98 }}
@@ -963,7 +963,7 @@ export default function Home() {
                   <img
                     src={selectedArticle.images[articleImageIndex]}
                     alt={selectedArticle.title}
-                    className="h-56 w-full object-cover"
+                    className="h-36 w-full object-cover sm:h-44"
                   />
                   {selectedArticle.images.length > 1 && (
                     <>
