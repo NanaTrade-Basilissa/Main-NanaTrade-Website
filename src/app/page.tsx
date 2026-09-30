@@ -182,14 +182,14 @@ const NEWS_ARTICLES: NewsArticle[] = [
   {
     title: 'Surge in Restaurant Franchisee Bankruptcies Driven by Rising Costs',
     summary: 'High operational costs and labor expenses trigger restructuring among major multi-unit franchise operators as foot traffic shifts.',
-    image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80',
+    image: './images/news1.png',
     date: 'September 18, 2026',
     category: 'Industry Trends'
   },
   {
     title: 'Acceleration of AI & Automation Across Restaurant Operations',
     summary: 'Restaurants aggressively integrate AI voice-assisted drive-thrus, automated kitchen tools, and dynamic inventory analytics to boost efficiency.',
-    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80',
+    image: './images/new2.png',
     date: 'September 10, 2026',
     category: 'Technology & Food'
   },
