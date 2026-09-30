@@ -44,7 +44,8 @@ interface TeamMember {
 interface NewsArticle {
   title: string;
   summary: string;
-  image: string;
+  details: string;
+  images: string[];
   date: string;
   category: string;
 }
@@ -180,16 +181,18 @@ const carouselItems = [
 
 const NEWS_ARTICLES: NewsArticle[] = [
   {
-    title: 'Surge in Restaurant Franchisee Bankruptcies Driven by Rising Costs',
-    summary: 'High operational costs and labor expenses trigger restructuring among major multi-unit franchise operators as foot traffic shifts.',
-    image: './images/news1.png',
-    date: 'September 18, 2026',
-    category: 'Industry Trends'
+      title: 'New Games Set to Excite Players This Season',
+      summary: 'Discover the latest games, exciting new features, competitive challenges, and updates bringing fresh experiences to players.',
+      details: 'This season’s game releases are bringing players fresh ways to play, from new features and challenges to updates that refresh familiar favorites. Competitive modes give players more opportunities to test their skills, while new content helps keep each session engaging. Whether you enjoy exploring new worlds or competing with others, there is something new to discover.',
+      images: ['./images/pic1.jpeg', './images/pic2.jpeg', './images/pic3.jpeg'],
+      date: 'September 18, 2026',
+      category: 'Gaming'
   },
   {
     title: 'Acceleration of AI & Automation Across Restaurant Operations',
     summary: 'Restaurants aggressively integrate AI voice-assisted drive-thrus, automated kitchen tools, and dynamic inventory analytics to boost efficiency.',
-    image: './images/new2.png',
+    details: 'Restaurant teams are bringing automation into more parts of daily operations. AI voice tools can help manage drive-through orders, while automated kitchen equipment supports preparation during busy periods. Inventory analytics can help teams track stock and plan replenishment around changing demand. Together, these tools are intended to make service more consistent and help staff focus on the work that benefits most from a human touch.',
+    images: ['./images/new2.png', './images/new2.png', './images/new3.png'],
     date: 'September 10, 2026',
     category: 'Technology & Food'
   },
@@ -199,6 +202,8 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [carouselIndex, setCarouselIndex] = useState(0);
+  const [selectedArticle, setSelectedArticle] = useState<NewsArticle | null>(null);
+  const [articleImageIndex, setArticleImageIndex] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -214,6 +219,27 @@ export default function Home() {
     }, 3000);
     return () => clearInterval(timer);
   }, []);
+
+  useEffect(() => {
+    if (!selectedArticle) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setSelectedArticle(null);
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedArticle]);
+
+  useEffect(() => {
+    if (!selectedArticle || selectedArticle.images.length < 2) return;
+
+    const timer = setInterval(() => {
+      setArticleImageIndex((current) => (current + 1) % selectedArticle.images.length);
+    }, 3000);
+
+    return () => clearInterval(timer);
+  }, [selectedArticle]);
 
   return (
     <div className="min-h-screen bg-white text-[#1e293b] font-sans overflow-x-hidden selection:bg-[#007c89] selection:text-white">
@@ -880,7 +906,7 @@ export default function Home() {
               >
                 <div className="h-52 overflow-hidden relative">
                   <img
-                    src={article.image}
+                    src={article.images[0]}
                     alt={article.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
@@ -898,16 +924,103 @@ export default function Home() {
                       {article.summary}
                     </p>
                   </div>
-                  <a
-                    href="#"
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setArticleImageIndex(0);
+                      setSelectedArticle(article);
+                    }}
                     className="text-[#007c89] font-bold text-xs uppercase tracking-wider inline-flex items-center gap-1 hover:text-[#38a8a4] transition-colors"
                   >
                     READ MORE <ArrowRight className="w-3.5 h-3.5" />
-                  </a>
+                  </button>
                 </div>
               </motion.article>
             ))}
           </div>
+
+          <AnimatePresence>
+            {selectedArticle && (
+              <motion.div
+                className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/70 p-4"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onMouseDown={(event) => {
+                  if (event.target === event.currentTarget) setSelectedArticle(null);
+                }}
+              >
+                <motion.div
+                  role="dialog"
+                  aria-modal="true"
+                  aria-labelledby="news-modal-title"
+                  className="relative w-full max-w-xl rounded-2xl bg-white text-left shadow-2xl"
+                  initial={{ opacity: 0, y: 20, scale: 0.97 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 10, scale: 0.98 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <img
+                    src={selectedArticle.images[articleImageIndex]}
+                    alt={selectedArticle.title}
+                    className="h-56 w-full object-cover"
+                  />
+                  {selectedArticle.images.length > 1 && (
+                    <>
+                      <button
+                        type="button"
+                        onClick={() => setArticleImageIndex((current) =>
+                          (current - 1 + selectedArticle.images.length) % selectedArticle.images.length
+                        )}
+                        aria-label="Show previous article image"
+                        className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-white/95 p-2 text-slate-700 shadow hover:bg-white"
+                      >
+                        <ChevronRight className="h-5 w-5 rotate-180" />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setArticleImageIndex((current) =>
+                          (current + 1) % selectedArticle.images.length
+                        )}
+                        aria-label="Show next article image"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-white/95 p-2 text-slate-700 shadow hover:bg-white"
+                      >
+                        <ChevronRight className="h-5 w-5" />
+                      </button>
+                      <span className="absolute bottom-3 right-3 rounded-full bg-slate-950/70 px-2.5 py-1 text-xs font-semibold text-white">
+                        {articleImageIndex + 1} / {selectedArticle.images.length}
+                      </span>
+                    </>
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => setSelectedArticle(null)}
+                    aria-label="Close article details"
+                    className="absolute right-4 top-4 rounded-full bg-white/95 p-2 text-slate-700 shadow hover:bg-white"
+                  >
+                    <X className="h-5 w-5" />
+                  </button>
+                  <div className="p-6 sm:p-8">
+                    <div className="mb-3 flex flex-wrap items-center gap-3">
+                      <span className="rounded-full bg-[#007c89] px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white">
+                        {selectedArticle.category}
+                      </span>
+                      <span className="text-xs text-slate-400">{selectedArticle.date}</span>
+                    </div>
+                    <h3 id="news-modal-title" className="mb-4 text-xl font-extrabold leading-snug text-slate-800 sm:text-2xl">
+                      {selectedArticle.title}
+                    </h3>
+                    <p className="text-sm leading-relaxed text-slate-600">
+                      {selectedArticle.summary}
+                    </p>
+                    <p className="mt-4 border-t border-slate-100 pt-4 text-sm leading-relaxed text-slate-600">
+                      {selectedArticle.details}
+                    </p>
+                  </div>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </section>
 
