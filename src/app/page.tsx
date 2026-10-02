@@ -74,7 +74,7 @@ const BRANDS: BrandItem[] = [
     image: '/images/basiliss.png',
     name: 'BASILISSA',
     description: 'Premier restaurant & food hospitality service delivering authentic dining experiences across Ghana.',
-    link: 'https://basilissa.web.app',
+    link: '/basilissa',
     tag: 'Hospitality & Dining'
   },
   {
@@ -577,14 +577,23 @@ export default function Home() {
                 </div>
 
                 <div className="px-6 pb-6 text-center">
-                  <a
-                    href={brand.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#007c89] font-bold text-xs uppercase tracking-wider inline-flex items-center justify-center gap-1 hover:text-[#38a8a4] transition-colors"
-                  >
-                    DISCOVER <ArrowRight className="w-3.5 h-3.5" />
-                  </a>
+                  {brand.link.startsWith('http') ? (
+                    <a
+                      href={brand.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#007c89] font-bold text-xs uppercase tracking-wider inline-flex items-center justify-center gap-1 hover:text-[#38a8a4] transition-colors"
+                    >
+                      DISCOVER <ArrowRight className="w-3.5 h-3.5" />
+                    </a>
+                  ) : (
+                    <Link
+                      href={brand.link}
+                      className="text-[#007c89] font-bold text-xs uppercase tracking-wider inline-flex items-center justify-center gap-1 hover:text-[#38a8a4] transition-colors"
+                    >
+                      DISCOVER <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                  )}
                 </div>
               </motion.div>
             ))}
