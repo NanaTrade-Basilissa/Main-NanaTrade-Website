@@ -63,7 +63,7 @@
   --color-accent-soft: var(--color-accent-soft);
   --color-on-accent: var(--color-on-accent);
 
-  --font-sans: var(--font-manrope);
+  --font-sans: Arial, Helvetica, sans-serif;
 }
 
 html {

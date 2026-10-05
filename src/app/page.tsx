@@ -195,8 +195,6 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white text-[#1e293b] font-sans overflow-x-hidden selection:bg-[#007c89] selection:text-white">
       <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Graduate&family=Montserrat:wght@400;500;600;700;800;900&display=swap');
-        
         :root {
           --primary-teal: #007c89;
           --accent-teal: #38a8a4;
@@ -206,11 +204,11 @@ export default function Home() {
         }
 
         body {
-          font-family: 'Montserrat', sans-serif;
+          font-family: var(--font-manrope), Arial, sans-serif;
         }
 
         .textured-title {
-          font-family: 'Graduate', 'Montserrat', sans-serif;
+          font-family: Georgia, 'Times New Roman', serif;
           background: repeating-linear-gradient(
             45deg,
             #ffffff,
