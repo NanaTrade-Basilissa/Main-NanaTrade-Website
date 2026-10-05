@@ -324,38 +324,135 @@ export default function BasilissaPage() {
               <div className="eyebrow">Our locations</div>
               <h2>Find Basilissa near you.</h2>
             </div>
-            <p>Six branches across Greater Accra, each run to the same Basilissa standard. Open Monday–Saturday 9:00–23:00 and Sunday 10:00–21:00.</p>
+            <p>
+              Six branches across Greater Accra, each run to the same Basilissa standard. Open Monday–Saturday 9:00–23:00 and Sunday 10:00–21:00.
+            </p>
           </div>
           <div className="cards">
             <article className="card">
-              <div className="card-top"><h3>Accra Mall</h3><small>01</small></div>
-              <dl><dt>Location</dt><dd>Accra Mall, Tetteh Quarshie, Accra</dd><dt>Hours</dt><dd>Mon–Sat 9–23 · Sun 10–21</dd><dt>Contact</dt><dd><a href="tel:+233544577777">054 457 7777</a></dd></dl>
-              <a className="textlink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Basilissa+Accra+Mall">Get directions</a>
+              <div className="card-media">
+                <img src="./images/accramall.png" alt="Basilissa Accra Mall branch" />
+              </div>
+              <div className="card-top">
+                <h3>Accra Mall</h3>
+                <small>01</small>
+              </div>
+              <dl>
+                <dt>Location</dt>
+                <dd>Accra Mall, Tetteh Quarshie, Accra</dd>
+                <dt>Hours</dt>
+                <dd>Mon–Sat 9–23 · Sun 10–21</dd>
+                <dt>Contact</dt>
+                <dd><a href="tel:+233544577777">054 457 7777</a></dd>
+              </dl>
+              <a className="textlink" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/?api=1&query=Basilissa+Accra+Mall">
+                Get directions
+              </a>
             </article>
+
             <article className="card">
-              <div className="card-top"><h3>Achimota Mall</h3><small>02</small></div>
-              <dl><dt>Location</dt><dd>Achimota Mall, Achimota, Accra</dd><dt>Hours</dt><dd>Mon–Sat 9–23 · Sun 10–21</dd><dt>Contact</dt><dd><a href="tel:+233543771778">054 377 1778</a></dd></dl>
-              <a className="textlink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Basilissa+Achimota+Mall">Get directions</a>
+              <div className="card-media">
+                <img src="./images/achimota.jpg" alt="Basilissa Achimota Mall branch" />
+              </div>
+              <div className="card-top">
+                <h3>Achimota Mall</h3>
+                <small>02</small>
+              </div>
+              <dl>
+                <dt>Location</dt>
+                <dd>Achimota Mall, Achimota, Accra</dd>
+                <dt>Hours</dt>
+                <dd>Mon–Sat 9–23 · Sun 10–21</dd>
+                <dt>Contact</dt>
+                <dd><a href="tel:+233543771778">054 377 1778</a></dd>
+              </dl>
+              <a className="textlink" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/?api=1&query=Basilissa+Achimota+Mall">
+                Get directions
+              </a>
             </article>
+
             <article className="card">
-              <div className="card-top"><h3>West Hills Mall</h3><small>03</small></div>
-              <dl><dt>Location</dt><dd>West Hills Mall, Weija, Accra</dd><dt>Hours</dt><dd>Mon–Sat 9–23 · Sun 10–21</dd><dt>Contact</dt><dd><a href="tel:+233544125506">054 412 5506</a></dd></dl>
-              <a className="textlink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Basilissa+West+Hills+Mall+Weija">Get directions</a>
+              <div className="card-media">
+                <img src="./images/westhills.png" alt="Basilissa West Hills Mall branch" />
+              </div>
+              <div className="card-top">
+                <h3>West Hills Mall</h3>
+                <small>03</small>
+              </div>
+              <dl>
+                <dt>Location</dt>
+                <dd>West Hills Mall, Weija, Accra</dd>
+                <dt>Hours</dt>
+                <dd>Mon–Sat 9–23 · Sun 10–21</dd>
+                <dt>Contact</dt>
+                <dd><a href="tel:+233544125506">054 412 5506</a></dd>
+              </dl>
+              <a className="textlink" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/?api=1&query=Basilissa+West+Hills+Mall+Weija">
+                Get directions
+              </a>
             </article>
+
             <article className="card">
-              <div className="card-top"><h3>Tema</h3><small>04</small></div>
-              <dl><dt>Location</dt><dd>Community 6, Tema</dd><dt>Hours</dt><dd>Mon–Sat 9–23 · Sun 10–21</dd><dt>Contact</dt><dd><a href="tel:+233543771777">054 377 1777</a></dd></dl>
-              <a className="textlink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Basilissa+Community+6+Tema">Get directions</a>
+              <div className="card-media">
+                <img src="./images/tema.png" alt="Basilissa Tema branch" />
+              </div>
+              <div className="card-top">
+                <h3>Tema</h3>
+                <small>04</small>
+              </div>
+              <dl>
+                <dt>Location</dt>
+                <dd>Community 6, Tema</dd>
+                <dt>Hours</dt>
+                <dd>Mon–Sat 9–23 · Sun 10–21</dd>
+                <dt>Contact</dt>
+                <dd><a href="tel:+233543771777">054 377 1777</a></dd>
+              </dl>
+              <a className="textlink" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/?api=1&query=Basilissa+Community+6+Tema">
+                Get directions
+              </a>
             </article>
+
             <article className="card">
-              <div className="card-top"><h3>Dawhenya</h3><small>05</small></div>
-              <dl><dt>Location</dt><dd>Community 25, Dawhenya</dd><dt>Hours</dt><dd>Mon–Sat 9–23 · Sun 10–21</dd><dt>Contact</dt><dd><a href="tel:+233540125497">054 012 5497</a></dd></dl>
-              <a className="textlink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Basilissa+Dawhenya">Get directions</a>
+              <div className="card-media">
+                <img src="./images/dawhenya.png" alt="Basilissa Dawhenya branch" />
+              </div>
+              <div className="card-top">
+                <h3>Dawhenya</h3>
+                <small>05</small>
+              </div>
+              <dl>
+                <dt>Location</dt>
+                <dd>Community 25, Dawhenya</dd>
+                <dt>Hours</dt>
+                <dd>Mon–Sat 9–23 · Sun 10–21</dd>
+                <dt>Contact</dt>
+                <dd><a href="tel:+233540125497">054 012 5497</a></dd>
+              </dl>
+              <a className="textlink" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/?api=1&query=Basilissa+Dawhenya">
+                Get directions
+              </a>
             </article>
+
             <article className="card">
-              <div className="card-top"><h3>Afienya</h3><small>06</small></div>
-              <dl><dt>Location</dt><dd>Afienya</dd><dt>Hours</dt><dd>Mon–Sat 9–23 · Sun 10–21</dd><dt>Contact</dt><dd><a href="tel:+233540102485">054 010 2485</a></dd></dl>
-              <a className="textlink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Basilissa+Afienya">Get directions</a>
+              <div className="card-media">
+                <img src="./images/afienya.jpg" alt="Basilissa Afienya branch" />
+              </div>
+              <div className="card-top">
+                <h3>Afienya</h3>
+                <small>06</small>
+              </div>
+              <dl>
+                <dt>Location</dt>
+                <dd>Afienya</dd>
+                <dt>Hours</dt>
+                <dd>Mon–Sat 9–23 · Sun 10–21</dd>
+                <dt>Contact</dt>
+                <dd><a href="tel:+233540102485">054 010 2485</a></dd>
+              </dl>
+              <a className="textlink" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/?api=1&query=Basilissa+Afienya">
+                Get directions
+              </a>
             </article>
           </div>
         </div>
