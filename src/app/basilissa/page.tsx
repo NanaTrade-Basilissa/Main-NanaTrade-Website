@@ -271,7 +271,7 @@ export default function BasilissaPage() {
               <div className="eyebrow">The Basilissa experience</div>
               <h2>What we stand for.</h2>
             </div>
-            <img src="./images/layer 2.png" alt="Basilissa experience" />
+            <img src="./images/Layer 2.png" alt="Basilissa experience" />
         </div>
           <ul className="values">
             <li><small>01</small><h3>Quality</h3><p>We are committed to quality in every part of the experience.</p></li>
