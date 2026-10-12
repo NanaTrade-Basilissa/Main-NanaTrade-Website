@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -11,10 +12,12 @@ export default function NewsArticlePage() {
   const { slug } = useParams<{ slug: string }>();
   const article = NEWS_ARTICLES.find((item) => item.slug === slug);
   const [imageIndex, setImageIndex] = useState(0);
+  const [prevSlug, setPrevSlug] = useState(slug);
 
-  useEffect(() => {
+  if (prevSlug !== slug) {
+    setPrevSlug(slug);
     setImageIndex(0);
-  }, [slug]);
+  }
 
   useEffect(() => {
     if (!article || article.images.length < 2) return;
@@ -52,16 +55,23 @@ export default function NewsArticlePage() {
       <article className="mx-auto max-w-4xl overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-xl">
         <div className="relative h-64 bg-slate-100 sm:h-[28rem]">
           <AnimatePresence mode="wait">
-            <motion.img
+            <motion.div
               key={article.images[imageIndex]}
-              src={article.images[imageIndex]}
-              alt={`${article.title} image ${imageIndex + 1}`}
-              className="absolute inset-0 h-full w-full object-cover"
+              className="absolute inset-0"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.35 }}
-            />
+            >
+              <Image
+                src={article.images[imageIndex]}
+                alt={`${article.title} image ${imageIndex + 1}`}
+                fill
+                priority
+                sizes="(max-width: 896px) 100vw, 896px"
+                className="object-cover"
+              />
+            </motion.div>
           </AnimatePresence>
           {article.images.length > 1 && (
             <>

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { NEWS_ARTICLES } from '@/lib/news';
@@ -277,9 +278,17 @@ export default function Home() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 1.2, ease: "easeInOut" }}
-              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-              style={{ backgroundImage: `url(${carouselItems[carouselIndex].image})` }}
-            />
+              className="absolute inset-0"
+            >
+              <Image
+                src={carouselItems[carouselIndex].image}
+                alt={carouselItems[carouselIndex].title}
+                fill
+                priority
+                sizes="100vw"
+                className="object-cover object-center"
+              />
+            </motion.div>
           </AnimatePresence>
           <div className="absolute inset-0 bg-gradient-to-b from-[#1e3c41]/85 via-[#143237]/80 to-[#0d1b1e]/90" />
         </div>
@@ -315,9 +324,12 @@ export default function Home() {
 
               <a href="#home" className="px-4 flex flex-col items-center transition-transform hover:scale-105 duration-300">
                 <div className="w-full h-1 bg-[#38a8a4] mb-1.5 rounded-full" />
-                <img
+                <Image
                   src="/images/logo.png" 
                   alt="NanaTrade Logo"
+                  width={160}
+                  height={64}
+                  priority
                   className="h-14 sm:h-16 w-auto object-contain"
                 />
               </a>
@@ -484,10 +496,12 @@ export default function Home() {
             className="flex justify-center"
           >
             <div className="relative w-full max-w-md h-[360px] sm:h-[400px]">
-              <img
+              <Image
                 src="/images/brand.png"
                 alt="About NanaTrade Team"
-                className="w-full h-full object-cover organic-blob shadow-2xl"
+                fill
+                sizes="(max-width: 768px) 100vw, 448px"
+                className="object-cover organic-blob shadow-2xl"
               />
             </div>
           </motion.div>
@@ -552,11 +566,15 @@ export default function Home() {
               >
                 <div>
                   <div className="relative h-48 w-full bg-slate-50 flex items-center justify-center p-6 border-b border-slate-100 overflow-hidden">
-                    <img
-                      src={brand.image}
-                      alt={brand.name}
-                      className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500"
-                    />
+                    <div className="relative w-full h-full">
+                      <Image
+                        src={brand.image}
+                        alt={brand.name}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="object-contain p-2 group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
                     {brand.tag && (
                       <span className="absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wider bg-white/90 backdrop-blur-sm text-[#007c89] px-3 py-1 rounded-full shadow-sm border border-slate-100">
                         {brand.tag}
@@ -683,10 +701,12 @@ export default function Home() {
             className="flex justify-center"
           >
             <div className="relative w-full max-w-md h-[360px] sm:h-[400px]">
-              <img
+              <Image
                 src="/images/careers.png"
                 alt="Careers at NanaTrade"
-                className="w-full h-full object-cover organic-blob shadow-2xl"
+                fill
+                sizes="(max-width: 768px) 100vw, 448px"
+                className="object-cover organic-blob shadow-2xl"
               />
             </div>
           </motion.div>
@@ -710,10 +730,12 @@ export default function Home() {
             className="bg-[#004d55] rounded-2xl overflow-hidden grid grid-cols-1 md:grid-cols-12 shadow-2xl border border-white/10"
           >
             <div className="md:col-span-5 relative min-h-[300px] md:min-h-full">
-              <img
+              <Image
                 src="/images/ceo.png"
                 alt="Julius Yaw Baidoo Agbenyelia - CEO"
-                className="w-full h-full object-cover"
+                fill
+                sizes="(max-width: 768px) 100vw, 40vw"
+                className="object-cover"
               />
             </div>
             <div className="md:col-span-7 p-8 sm:p-12 flex flex-col justify-center">
@@ -788,10 +810,12 @@ export default function Home() {
                 className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 pb-5 group border border-slate-100 hover:-translate-y-2 text-center"
               >
                 <div className="h-48 overflow-hidden relative">
-                  <img
+                  <Image
                     src={member.image}
                     alt={member.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
 
                   <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center gap-3">
@@ -863,10 +887,12 @@ export default function Home() {
                 className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 flex flex-col group"
               >
                 <div className="h-52 overflow-hidden relative">
-                  <img
+                  <Image
                     src={article.images[0]}
                     alt={article.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <span className="absolute top-3 left-3 bg-[#007c89] text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow">
                     {article.category}
