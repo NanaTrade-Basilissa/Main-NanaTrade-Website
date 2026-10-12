@@ -1,5 +1,81 @@
-import Image from "next/image";
+'use client';
+
+import { useState } from 'react';
+import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
+
+interface FoodItem {
+  id: string;
+  label: string;
+  sublabel?: string;
+  title: string;
+  description: string;
+  image: string;
+  alt: string;
+}
+
+const FOOD_ITEMS: FoodItem[] = [
+  {
+    id: 'shawarma',
+    label: 'Shawarma',
+    title: 'Signature Shawarma',
+    description: 'Fresh flatbread rolled with seasoned rotisserie chicken, garlic sauce, and crisp vegetables.',
+    image: '/images/basilissa/shawarma.jpg',
+    alt: 'Freshly wrapped Basilissa chicken shawarma with fries and dipping sauce',
+  },
+  {
+    id: 'burgers',
+    label: 'Burgers',
+    title: 'Gourmet Burgers',
+    description: 'Juicy grilled beef patty with melted cheddar, crisp greens, and house sauce in a toasted brioche bun.',
+    image: '/images/basilissa/burger.jpg',
+    alt: 'Basilissa gourmet burger with golden fries and dipping sauce',
+  },
+  {
+    id: 'pizza',
+    label: 'Pizza',
+    title: 'Artisanal Pizza',
+    description: 'Freshly baked with savory chicken, sweet peppers, melted mozzarella, and fresh basil.',
+    image: '/images/basilissa/pizza.jpg',
+    alt: 'Freshly baked Basilissa artisanal pizza on a wooden board',
+  },
+  {
+    id: 'rice-meals',
+    label: 'Rice meals',
+    title: 'Rice Meals',
+    description: 'Signature grilled chicken served with seasoned fried rice, golden omelette, and fresh coleslaw.',
+    image: '/images/basilissa/cta-chicken-rice.jpg',
+    alt: 'Basilissa grilled chicken and seasoned fried rice meal platter',
+  },
+  {
+    id: 'chicken',
+    label: 'Chicken',
+    title: 'Spicy Chicken',
+    description: 'Crispy outside, fiery inside, expertly fried and finished with toasted sesame seeds.',
+    image: '/images/basilissa/spicy-chicken.jpg',
+    alt: 'Basilissa spicy fried chicken in a takeaway box',
+  },
+  {
+    id: 'sides',
+    label: 'Sides',
+    title: 'Sides & Extras',
+    description: 'Golden fried plantains, seasoned fries, fresh salads, and authentic Ghanaian specialty sauces.',
+    image: '/images/basilissa/tableware.jpg',
+    alt: 'Basilissa traditional sides, plantains, and table accompaniments',
+  },
+  {
+    id: 'nominom',
+    label: 'Nominom',
+    sublabel: 'Drinks and Desserts…',
+    title: 'Drinks & Desserts',
+    description: 'Fresh juices, fruit smoothies, cakes, and sweet baked treats from our Nominom collection.',
+    image: '/images/basilissa/drinks-desserts.jpg',
+    alt: 'Nominom fresh juices, cake, and sweet pastries',
+  },
+];
+
 export default function BasilissaPage() {
+  const [activeFood, setActiveFood] = useState<FoodItem>(FOOD_ITEMS[0]);
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: `
@@ -80,15 +156,23 @@ export default function BasilissaPage() {
                     .food{padding:136px 0 140px}
                     .food h2{margin-bottom:60px;max-width:640px}
                     .food-grid{display:grid;grid-template-columns:minmax(0,824fr) minmax(0,377fr);gap:48px}
-                    .feature{position:relative}
-                    .feature img{width:100%}
-                    .feature figcaption{position:absolute;left:0;bottom:0;background:#fff;padding:20px 28px 18px;width:min(394px,100%)}
-                    .feature figcaption b{font-family:var(--head);font-size:21px;text-transform:uppercase;display:block;line-height:1.2}
-                    .feature figcaption span{font-size:14px;color:var(--text)}
-                    .food-side p{margin-bottom:40px}
-                    .menu li{border-top:1px solid var(--line);font-family:var(--head);font-weight:700;font-size:18px;text-transform:uppercase;padding:12px 0}
+                    .feature{position:relative;overflow:hidden;aspect-ratio:824/599;background:#f6f5f0;width:100%}
+                    .food-img-motion{position:absolute;inset:0;width:100%;height:100%}
+                    .food-img-cover{width:100%;height:100%;object-fit:cover}
+                    .feature figcaption{position:absolute;left:0;bottom:0;background:#fff;padding:20px 28px 18px;width:min(394px,100%);z-index:10;box-shadow:0 -4px 20px rgba(18,19,15,.06)}
+                    .feature figcaption b{font-family:var(--head);font-size:21px;text-transform:uppercase;display:block;line-height:1.2;color:var(--black)}
+                    .feature figcaption span{font-size:14px;color:var(--text);display:block;margin-top:4px}
+                    .food-side p{margin-bottom:32px}
+                    .menu{list-style:none;padding:0;margin:0}
+                    .menu li{border-top:1px solid var(--line);padding:0}
                     .menu li:last-child{border-bottom:1px solid var(--line)}
-                    .menu li em{font:500 14px var(--body);text-transform:none;margin-left:6px}
+                    .menu-btn{width:100%;text-align:left;background:none;border:none;cursor:pointer;font-family:var(--head);font-weight:700;font-size:18px;text-transform:uppercase;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;transition:all .2s ease;color:var(--black)}
+                    .menu-btn:hover{background:var(--beige);padding-left:20px}
+                    .menu-btn.active{background:var(--yellow);padding-left:20px}
+                    .menu-btn em{font:500 14px var(--body);text-transform:none;margin-left:6px;opacity:.8}
+                    .menu-arrow{width:16px;height:16px;opacity:0;transition:all .2s ease;transform:translateX(-6px);flex-shrink:0}
+                    .menu-btn:hover .menu-arrow{opacity:.4;transform:translateX(0)}
+                    .menu-btn.active .menu-arrow{opacity:1;transform:translateX(0)}
                     .food-side .btn{display:block;margin-top:40px}
                     .food-row{display:grid;grid-template-columns:minmax(0,824fr) minmax(0,401fr);gap:24px;margin-top:57px;align-items:stretch}
                     .food-video{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;background:#111;border:0;border-bottom:12px solid var(--pink);box-shadow:0 18px 38px rgba(18,19,15,.12)}
@@ -293,19 +377,70 @@ export default function BasilissaPage() {
           <h2>Food made to be remembered.</h2>
           <div className="food-grid">
             <figure className="feature">
-              <Image src="/images/basilissa/spicy-chicken.jpg" alt="Basilissa spicy fried chicken in a takeaway box" width={824} height={599} />
-              <figcaption><b>Spicy chicken</b><span>Crispy outside, fiery inside, finished with sesame.</span></figcaption>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeFood.id}
+                  initial={{ opacity: 0, scale: 0.98 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 1.01 }}
+                  transition={{ duration: 0.35, ease: 'easeInOut' }}
+                  className="food-img-motion"
+                >
+                  <Image
+                    src={activeFood.image}
+                    alt={activeFood.alt}
+                    fill
+                    sizes="(max-width: 900px) 100vw, 824px"
+                    priority
+                    className="food-img-cover"
+                  />
+                </motion.div>
+              </AnimatePresence>
+              <AnimatePresence mode="wait">
+                <motion.figcaption
+                  key={`cap-${activeFood.id}`}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.25 }}
+                >
+                  <b>{activeFood.title}</b>
+                  <span>{activeFood.description}</span>
+                </motion.figcaption>
+              </AnimatePresence>
             </figure>
             <div className="food-side">
               <p>Every Basilissa dish is developed around flavour and prepared to one standard across all our kitchens — from our signature chicken to rice meals, pizza and fresh drinks.</p>
               <ul className="menu">
-                <li>Shawarma</li>
-                <li>Burgers</li>
-                <li>Pizza</li>
-                <li>Rice meals</li>
-                <li>Chicken</li>
-                <li>Sides</li>
-                <li>Nominom <em>Drinks and Desserts…</em></li>
+                {FOOD_ITEMS.map((item) => {
+                  const isActive = item.id === activeFood.id;
+                  return (
+                    <li key={item.id}>
+                      <button
+                        type="button"
+                        onClick={() => setActiveFood(item)}
+                        className={`menu-btn ${isActive ? 'active' : ''}`}
+                        aria-pressed={isActive}
+                      >
+                        <span>
+                          {item.label}
+                          {item.sublabel && <em>{item.sublabel}</em>}
+                        </span>
+                        <svg
+                          className="menu-arrow"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth={2.5}
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <polyline points="9 18 15 12 9 6" />
+                        </svg>
+                      </button>
+                    </li>
+                  );
+                })}
               </ul>
               <a className="btn btn-outline" target="_blank" rel="noopener noreferrer" href="https://basilissa.web.app">Explore our food</a>
             </div>
