@@ -250,6 +250,7 @@ export default function BasilissaPage() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isHeroPaused, setIsHeroPaused] = useState(false);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const [foodTouchStartX, setFoodTouchStartX] = useState<number | null>(null);
 
   const paginateHero = useCallback((newDirection: number) => {
     setCurrentSlide((prev) => {
@@ -284,6 +285,27 @@ export default function BasilissaPage() {
       }
     }
     setTouchStartX(null);
+  };
+
+  const handleFoodTouchStart = (e: React.TouchEvent) => {
+    setFoodTouchStartX(e.targetTouches[0].clientX);
+  };
+
+  const handleFoodTouchEnd = (e: React.TouchEvent) => {
+    if (foodTouchStartX === null) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = foodTouchStartX - touchEndX;
+    if (Math.abs(diff) > 40) {
+      const currentIndex = FOOD_ITEMS.findIndex((f) => f.id === activeFood.id);
+      if (diff > 0) {
+        const nextIndex = (currentIndex + 1) % FOOD_ITEMS.length;
+        setActiveFood(FOOD_ITEMS[nextIndex]);
+      } else {
+        const prevIndex = (currentIndex - 1 + FOOD_ITEMS.length) % FOOD_ITEMS.length;
+        setActiveFood(FOOD_ITEMS[prevIndex]);
+      }
+    }
+    setFoodTouchStartX(null);
   };
 
   const activeHeroSlide = HERO_SLIDES[currentSlide];
@@ -336,14 +358,14 @@ export default function BasilissaPage() {
                     .burger span{width:24px;height:2px;background:var(--black)}
 
                     /* Hero */
-                    .hero{position:relative;max-width:1440px;margin:0 auto;aspect-ratio:1440/720;width:100%;min-height:540px;overflow:hidden;background:#fff}
-                    .hero-slider{position:absolute;inset:0;width:100%;height:100%;z-index:1;user-select:none}
-                    .hero-slide-item{position:absolute;inset:0;width:100%;height:100%}
-                    .hero-slide-img{width:100%;height:100%;object-fit:cover;object-position:right center}
-                    .hero-copy{position:relative;z-index:2;width:min(560px,39%);height:100%;display:flex;flex-direction:column;justify-content:center;padding:48px 28px 48px var(--gutter);pointer-events:auto}
+                    .hero{position:relative;width:100%;max-width:100%;margin:0;display:grid;grid-template-columns:max(560px,calc((100vw - 1440px)/2 + 560px)) 1fr;min-height:560px;background:#fff;align-items:stretch;overflow:hidden}
+                    .hero-copy{display:flex;flex-direction:column;justify-content:center;padding:56px 40px 56px max(var(--gutter),calc((100vw - 1440px)/2 + var(--gutter)));background:#fff;z-index:2}
                     .hero h1{font-size:clamp(34px,3.5vw,53px);margin-bottom:24px}
-                    .hero p{font-size:clamp(15px,1.25vw,18px);max-width:430px;margin-bottom:28px}
+                    .hero p{font-size:clamp(15px,1.25vw,18px);max-width:440px;margin-bottom:28px}
                     .cta-row{display:flex;gap:12px;flex-wrap:wrap}
+                    .hero-slider{position:relative;width:100%;height:100%;min-height:520px;overflow:hidden;user-select:none;background:#fff}
+                    .hero-slide-item{position:absolute;inset:0;width:100%;height:100%}
+                    .hero-slide-img{width:100%;height:100%;object-fit:cover;object-position:center}
                     .hero-pill-controls{position:absolute;bottom:28px;right:28px;z-index:10;display:flex;align-items:center;gap:10px;background:rgba(18,19,15,.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:6px 14px;border-radius:30px;color:#fff;box-shadow:0 8px 24px rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.12);user-select:none}
                     .hero-pill-btn{background:none;border:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;transition:all .2s ease;padding:0}
                     .hero-pill-btn:hover{background:var(--yellow);color:var(--black);transform:scale(1.1)}
@@ -371,9 +393,10 @@ export default function BasilissaPage() {
 
                     /* Food */
                     .food{padding:136px 0 140px}
-                    .food h2{margin-bottom:60px;max-width:640px}
+                    .food h2{margin-bottom:32px;max-width:640px}
+                    .food-mobile-tabs{display:none}
                     .food-grid{display:grid;grid-template-columns:minmax(0,824fr) minmax(0,377fr);gap:48px}
-                    .feature{position:relative;overflow:hidden;aspect-ratio:824/599;background:#f6f5f0;width:100%}
+                    .feature{position:relative;overflow:hidden;aspect-ratio:824/599;background:#f6f5f0;width:100%;cursor:grab}
                     .food-img-motion{position:absolute;inset:0;width:100%;height:100%}
                     .food-img-cover{width:100%;height:100%;object-fit:cover}
                     .feature figcaption{position:absolute;left:0;bottom:0;background:#fff;padding:20px 28px 18px;width:min(394px,100%);z-index:10;box-shadow:0 -4px 20px rgba(18,19,15,.06)}
@@ -472,14 +495,14 @@ export default function BasilissaPage() {
                     /* Responsive */
                     @media (max-width:1100px){
                     .nav ul{gap:22px}
-                    .hero{min-height:440px}
-                    .hero-copy{width:39%;padding:28px 14px 28px clamp(16px,3vw,36px)}
+                    .hero{grid-template-columns:1fr 1fr;min-height:480px}
+                    .hero-copy{padding:40px 24px 40px var(--gutter)}
                     .hero .eyebrow{font-size:10px;margin-bottom:10px;gap:8px}
                     .hero .eyebrow::before{width:16px;height:2px}
-                    .hero h1{font-size:clamp(22px,2.9vw,30px);line-height:1.02;margin-bottom:12px}
-                    .hero p{font-size:clamp(11px,1.35vw,14px);line-height:1.45;max-width:310px;margin-bottom:14px}
+                    .hero h1{font-size:clamp(24px,3.2vw,34px);line-height:1.02;margin-bottom:12px}
+                    .hero p{font-size:clamp(12px,1.4vw,14px);line-height:1.45;max-width:320px;margin-bottom:16px}
                     .cta-row{gap:8px}
-                    .cta-row .btn{padding:9px 12px;font-size:10px;letter-spacing:.06em;white-space:nowrap}
+                    .cta-row .btn{padding:10px 14px;font-size:10px;letter-spacing:.06em;white-space:nowrap}
                     .hero-pill-controls{bottom:16px;right:16px;padding:5px 12px}
                     .hero-pill-btn{width:24px;height:24px}
                     .hero-pill-counter{font-size:11px}
@@ -496,12 +519,29 @@ export default function BasilissaPage() {
                     .nav ul a{display:block;padding:12px 0}
                     #menu:checked~ul{display:flex}
                     .nav>.btn{padding:12px 16px;margin-left:auto}
+                    .hero{display:flex;flex-direction:column;justify-content:flex-end;position:relative;min-height:560px;height:84vh;max-height:720px;width:100%;max-width:100%;margin:0;overflow:hidden}
+                    .hero-slider{position:absolute;inset:0;width:100%;height:100%;min-height:auto;z-index:1}
+                    .hero-copy{position:relative;z-index:2;width:100%;background:linear-gradient(to top, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.90) 65%, rgba(255,255,255,0.45) 92%, transparent 100%);padding:40px var(--gutter) 28px;border-radius:20px 20px 0 0;box-shadow:0 -10px 25px rgba(18,19,15,.08)}
+                    .hero .eyebrow{font-size:11px;margin-bottom:12px;gap:8px}
+                    .hero .eyebrow::before{width:20px;height:3px}
+                    .hero h1{font-size:clamp(28px,7vw,38px);line-height:1.02;margin-bottom:14px}
+                    .hero p{font-size:14px;max-width:100%;margin-bottom:20px;line-height:1.45;color:var(--black)}
+                    .cta-row{display:flex;flex-direction:row;flex-wrap:nowrap;gap:8px;width:100%}
+                    .cta-row .btn{flex:1 1 0%;min-width:0;padding:14px 8px;font-size:11px;letter-spacing:.06em;text-align:center;white-space:nowrap}
+                    .hero-pill-controls{display:none !important}
                     .about .wrap,.food-grid,.food-row,.loc-head,.corp-grid,.gallery,.careers-grid,.way-head,.cta .wrap{grid-template-columns:minmax(0,1fr)}
                     .about,.stand,.food,.locations,.corp,.people,.way{padding-top:80px;padding-bottom:80px}
                     .about-img{max-width:min(400px,100%)}
                     .stand-head{flex-direction:column;align-items:flex-start}
                     .stand-head img{width:280px}
                     .loc-head,.way-head{gap:28px}
+                    .food-mobile-tabs{display:flex;gap:10px;overflow-x:auto;padding:4px 2px 18px;margin-bottom:16px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+                    .food-mobile-tabs::-webkit-scrollbar{display:none}
+                    .food-tab-pill{flex:0 0 auto;white-space:nowrap;font-family:var(--head);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:10px 18px;border-radius:999px;border:2px solid var(--black);background:#fff;color:var(--black);cursor:pointer;transition:all .2s ease}
+                    .food-tab-pill.active{background:var(--yellow);border-color:var(--black);color:var(--black);box-shadow:0 4px 14px rgba(18,19,15,.12);transform:translateY(-1px)}
+                    .food-side .menu{display:none}
+                    .food-side p{margin-bottom:20px;font-size:14px}
+                    .food-side .btn{margin-top:20px;width:100%;text-align:center}
                     .corp-copy{padding:0 var(--gutter) 40px}
                     .careers-pattern{min-height:180px;border-right:0}
                     .careers-copy{padding:72px var(--gutter)}
@@ -510,17 +550,7 @@ export default function BasilissaPage() {
                     .cta-img{max-width:min(420px,100%);margin:0 auto}
                     footer .wrap{grid-template-columns:1fr 1fr;row-gap:40px;padding-top:64px}
                     }
-                    @media (max-width:640px){
-                    .hero{aspect-ratio:auto;min-height:auto;display:flex;flex-direction:column}
-                    .hero-copy{width:100%;max-width:100%;height:auto;padding:36px var(--gutter) 40px}
-                    .hero .eyebrow{font-size:11px;margin-bottom:16px;gap:10px}
-                    .hero .eyebrow::before{width:20px;height:3px}
-                    .hero h1{font-size:clamp(32px,8vw,44px);line-height:.98;margin-bottom:20px}
-                    .hero p{font-size:15px;max-width:100%;margin-bottom:24px;line-height:1.55}
-                    .hero-slider{position:relative;inset:auto;width:100%;height:320px;min-height:260px;overflow:hidden}
-                    .hero-pill-controls{display:none !important}
-                    .cta-row{display:flex;flex-direction:row;flex-wrap:nowrap;gap:8px;width:100%}
-                    .cta-row .btn{flex:1 1 0%;min-width:0;padding:14px 8px;font-size:11px;letter-spacing:.06em;text-align:center;white-space:nowrap}
+                    @media (max-width:768px){
                     .card{min-height:270px;aspect-ratio:auto}
                     .card-overlay{padding:22px 20px 20px}
                     }
@@ -567,6 +597,20 @@ export default function BasilissaPage() {
         onMouseLeave={() => setIsHeroPaused(false)}
       >
         <div className="hero">
+          <div className="hero-copy">
+            <div className="eyebrow">{activeHeroSlide.eyebrow}</div>
+            <h1>{activeHeroSlide.title}</h1>
+            <p>{activeHeroSlide.description}</p>
+            <div className="cta-row">
+              <a className="btn btn-black" href={activeHeroSlide.primaryCta.href}>
+                {activeHeroSlide.primaryCta.label}
+              </a>
+              <a className="btn btn-yellow" href={activeHeroSlide.secondaryCta.href}>
+                {activeHeroSlide.secondaryCta.label}
+              </a>
+            </div>
+          </div>
+
           <div
             className="hero-slider"
             onTouchStart={handleHeroTouchStart}
@@ -586,7 +630,7 @@ export default function BasilissaPage() {
                   alt={activeHeroSlide.alt}
                   fill
                   priority={currentSlide === 0}
-                  sizes="(max-width: 960px) 100vw, 1440px"
+                  sizes="(max-width: 900px) 100vw, 60vw"
                   className="hero-slide-img"
                 />
               </motion.div>
@@ -599,53 +643,39 @@ export default function BasilissaPage() {
                     key={`preload-${slide.id}`}
                     src={slide.image}
                     alt=""
-                    width={1440}
+                    width={880}
                     height={720}
                     priority
                   />
                 )
               ))}
             </div>
-          </div>
 
-          <div className="hero-copy">
-            <div className="eyebrow">{activeHeroSlide.eyebrow}</div>
-            <h1>{activeHeroSlide.title}</h1>
-            <p>{activeHeroSlide.description}</p>
-            <div className="cta-row">
-              <a className="btn btn-black" href={activeHeroSlide.primaryCta.href}>
-                {activeHeroSlide.primaryCta.label}
-              </a>
-              <a className="btn btn-yellow" href={activeHeroSlide.secondaryCta.href}>
-                {activeHeroSlide.secondaryCta.label}
-              </a>
+            <div className="hero-pill-controls" aria-label="Hero carousel navigation">
+              <button
+                type="button"
+                onClick={() => paginateHero(-1)}
+                aria-label="Previous slide"
+                className="hero-pill-btn"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="15 18 9 12 15 6" />
+                </svg>
+              </button>
+              <span className="hero-pill-counter" aria-live="polite">
+                0{currentSlide + 1} / 0{HERO_SLIDES.length}
+              </span>
+              <button
+                type="button"
+                onClick={() => paginateHero(1)}
+                aria-label="Next slide"
+                className="hero-pill-btn"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </button>
             </div>
-          </div>
-
-          <div className="hero-pill-controls" aria-label="Hero carousel navigation">
-            <button
-              type="button"
-              onClick={() => paginateHero(-1)}
-              aria-label="Previous slide"
-              className="hero-pill-btn"
-            >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="15 18 9 12 15 6" />
-              </svg>
-            </button>
-            <span className="hero-pill-counter" aria-live="polite">
-              0{currentSlide + 1} / 0{HERO_SLIDES.length}
-            </span>
-            <button
-              type="button"
-              onClick={() => paginateHero(1)}
-              aria-label="Next slide"
-              className="hero-pill-btn"
-            >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="9 18 15 12 9 6" />
-              </svg>
-            </button>
           </div>
         </div>
         <div className="strip" role="img" aria-label="Basilissa brand pattern: La Foi, L'Amour and Adinkra symbols"></div>
@@ -696,8 +726,29 @@ export default function BasilissaPage() {
         <div className="wrap">
           <div className="eyebrow">Our food</div>
           <h2>Food made to be remembered.</h2>
+
+          {/* Mobile Category Pill Tabs */}
+          <div className="food-mobile-tabs" role="tablist" aria-label="Food categories">
+            {FOOD_ITEMS.map((item) => (
+              <button
+                key={`tab-${item.id}`}
+                type="button"
+                role="tab"
+                aria-selected={item.id === activeFood.id}
+                onClick={() => setActiveFood(item)}
+                className={`food-tab-pill ${item.id === activeFood.id ? 'active' : ''}`}
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
+
           <div className="food-grid">
-            <figure className="feature">
+            <figure
+              className="feature"
+              onTouchStart={handleFoodTouchStart}
+              onTouchEnd={handleFoodTouchEnd}
+            >
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeFood.id}

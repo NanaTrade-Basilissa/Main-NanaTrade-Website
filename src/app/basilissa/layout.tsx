@@ -36,8 +36,8 @@ export const metadata: Metadata = {
     siteName: 'Basilissa',
     images: [
       {
-        url: `${SITE_URL}/images/basilissa/hero/hero-1.png`,
-        width: 1440,
+        url: `${SITE_URL}/images/basilissa/hero/hero_1.jpg`,
+        width: 880,
         height: 720,
         alt: 'Basilissa Restaurant Food & Experience',
       },
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     title: "Basilissa | Ghana's Beloved Fast Food & Family Restaurant",
     description:
       "Order fresh burgers, stone-baked pizza, authentic shawarma, crispy chicken, and Nominom desserts. Six branches across Greater Accra.",
-    images: [`${SITE_URL}/images/basilissa/hero/hero-1.png`],
+    images: [`${SITE_URL}/images/basilissa/hero/hero_1.jpg`],
   },
 };
 
