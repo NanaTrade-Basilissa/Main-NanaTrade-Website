@@ -410,9 +410,11 @@ export default function BasilissaPage() {
                     .cta-img{max-width:min(420px,100%);margin:0 auto}
                     footer .wrap{grid-template-columns:1fr 1fr;row-gap:40px;padding-top:64px}
                     }
+                    @media (max-width:640px){
+                    .hero-pill-controls{display:none}
+                    }
                     @media (max-width:600px){
                     .hero-slider{height:300px;min-height:250px}
-                    .hero-pill-controls{bottom:14px;right:14px}
                     .cols,.cards,.tracks,.pillars{grid-template-columns:minmax(0,1fr)}
                     .stats,.values{grid-template-columns:1fr 1fr}
                     .strip{height:60px}
