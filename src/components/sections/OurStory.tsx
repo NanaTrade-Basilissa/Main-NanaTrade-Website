@@ -9,7 +9,7 @@ export function OurStory() {
         <div className="grid grid-cols-1 gap-14 lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-7">
             <ParallaxImage
-              src="/images/basilissa-dining-room.jpg"
+              src="/images/basilissa/about/shapergb.jpg"
               alt="A full Basilissa dining room, guests sharing a meal together"
               className="aspect-[4/3] w-full"
               sizes="(min-width: 1024px) 58vw, 100vw"

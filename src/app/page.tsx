@@ -72,7 +72,7 @@ const NAV_ITEMS: NavItem[] = [
 const BRANDS: BrandItem[] = [
   {
     id: 'basilissa',
-    image: '/images/basiliss.png',
+    image: '/images/nanatrade/brands/basiliss.png',
     name: 'BASILISSA',
     description: 'Premier restaurant & food hospitality service delivering authentic dining experiences across Ghana.',
     link: '/basilissa',
@@ -80,7 +80,7 @@ const BRANDS: BrandItem[] = [
   },
   {
     id: 'nomimun',
-    image: '/images/nominom.png',
+    image: '/images/nanatrade/brands/nominom.png',
     name: 'Nomimun',
     description: 'Premium consumer products distributed across major retail outlets with unmatched quality.',
     link: 'https://basilissa.web.app/#cake',
@@ -115,7 +115,7 @@ const TEAM_MEMBERS: TeamMember[] = [
   {
     name: 'Rev Akoto',
     role: 'Head Of Audit',
-    image: '/images/rev.jpeg',
+    image: '/images/nanatrade/leadership/rev.jpeg',
     linkedin: 'https://linkedin.com/in/rev-akoto',
     instagram: 'https://www.instagram.com/rev-akoto',
     email: 'rev.akoto@basilissagh.com',
@@ -123,7 +123,7 @@ const TEAM_MEMBERS: TeamMember[] = [
   {
     name: 'Derrick Cruise',
     role: 'Chief Finance Officer',
-    image: '/images/cruise.jpeg',
+    image: '/images/nanatrade/leadership/cruise.jpeg',
     linkedin: 'https://www.linkedin.com/in/derrick-mensah-otu-4b930395/',
     instagram: 'https://www.instagram.com/derrickcruise_?stkn=MXZwZ3UzZzh2YWs1cA%3D%3D&utm_source=qr',
     email: 'cfo@basilissagh.com',
@@ -131,7 +131,7 @@ const TEAM_MEMBERS: TeamMember[] = [
   {
     name: 'PS Cho',
     role: 'Head Of Stores',
-    image: '/images/cho.jpeg',
+    image: '/images/nanatrade/leadership/cho.jpeg',
     linkedin: 'https://linkedin.com/in/ps-cho',
     instagram: 'https://www.instagram.com/ps-cho',
     email: 'cw583@basilissagh.com',
@@ -139,7 +139,7 @@ const TEAM_MEMBERS: TeamMember[] = [
   {
     name: 'Frank Aidoo',
     role: 'General Manager',
-    image: '/images/frank.jpeg',
+    image: '/images/nanatrade/leadership/frank.jpeg',
     linkedin: 'https://www.linkedin.com/in/frank-aidoo-861747270?',
     instagram: 'https://www.instagram.com/frank-aidoo',
     email: 'gm@basilissagh.com',
@@ -149,25 +149,25 @@ const TEAM_MEMBERS: TeamMember[] = [
 const carouselItems = [
   {
     id: 'carousel-item-1',
-    image: '/images/hero.png',
+    image: '/images/nanatrade/hero/hero.png',
     title: 'Discover Our Services',
     description: 'Explore the wide range of services we offer to meet your needs.',
   },
   {
     id: 'carousel-item-2',
-    image: '/images/aa.jpeg',
+    image: '/images/nanatrade/hero/aa.jpeg',
     title: 'Our Commitment to Quality',
     description: 'We ensure top-notch quality in every product and service we provide.',
   },
   {
     id: 'carousel-item-3',
-    image: '/images/bb.jpeg',
+    image: '/images/nanatrade/hero/bb.jpeg',
     title: 'Join Our Team',
     description: 'Be a part of our dynamic and passionate team driving excellence.',
   },
   {
     id: 'carousel-item-4',
-    image: '/images/cc.jpeg',
+    image: '/images/nanatrade/hero/cc.jpeg',
     title: 'Join Our Team',
     description: 'Be a part of our dynamic and passionate team driving excellence.',
   },
@@ -325,7 +325,7 @@ export default function Home() {
               <a href="#home" className="px-4 flex flex-col items-center transition-transform hover:scale-105 duration-300">
                 <div className="w-full h-1 bg-[#38a8a4] mb-1.5 rounded-full" />
                 <Image
-                  src="/images/logo.png" 
+                  src="/images/nanatrade/logo/logo.png" 
                   alt="NanaTrade Logo"
                   width={160}
                   height={64}
@@ -477,7 +477,7 @@ export default function Home() {
           aria-hidden="true"
           className="absolute inset-0 z-0 pointer-events-none bg-repeat"
           style={{
-            backgroundImage: 'url(/images/watermark.png)',
+            backgroundImage: 'url(/images/nanatrade/logo/watermark.png)',
             backgroundSize: '960px auto',
             maskImage: 'linear-gradient(to bottom, transparent 0, #000 160px)',
             WebkitMaskImage: 'linear-gradient(to bottom, transparent 0, #000 160px)',
@@ -497,7 +497,7 @@ export default function Home() {
           >
             <div className="relative w-full max-w-md h-[360px] sm:h-[400px]">
               <Image
-                src="/images/brand.png"
+                src="/images/nanatrade/about/brand.png"
                 alt="About NanaTrade Team"
                 fill
                 sizes="(max-width: 768px) 100vw, 448px"
@@ -702,7 +702,7 @@ export default function Home() {
           >
             <div className="relative w-full max-w-md h-[360px] sm:h-[400px]">
               <Image
-                src="/images/careers.png"
+                src="/images/nanatrade/careers/careers.png"
                 alt="Careers at NanaTrade"
                 fill
                 sizes="(max-width: 768px) 100vw, 448px"
@@ -731,7 +731,7 @@ export default function Home() {
           >
             <div className="md:col-span-5 relative min-h-[300px] md:min-h-full">
               <Image
-                src="/images/ceo.png"
+                src="/images/nanatrade/leadership/ceo.png"
                 alt="Julius Yaw Baidoo Agbenyelia - CEO"
                 fill
                 sizes="(max-width: 768px) 100vw, 40vw"

@@ -22,7 +22,7 @@ const companies: Company[] = [
     tag: "Hospitality",
     description:
       "A Ghanaian hospitality brand: warm, contemporary dining rooted in Ghanaian culture, built for families and gatherings alike.",
-    image: "/images/basilissa-interior-hero.jpg",
+    image: "/images/basilissa/about/shapergb.jpg",
     imageAlt: "The interior of Basilissa Family Restaurant",
     href: "/basilissa",
     logo: { src: "/logos/basilissa-logo.png", alt: "Basilissa", width: 572, height: 483 },

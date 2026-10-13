@@ -20,7 +20,7 @@ const FOOD_ITEMS: FoodItem[] = [
     label: 'Shawarma',
     title: 'Signature Shawarma',
     description: 'Fresh flatbread rolled with seasoned rotisserie chicken, garlic sauce, and crisp vegetables.',
-    image: '/images/basilissa/shawarma.jpg',
+    image: '/images/basilissa/food/shawarma.jpg',
     alt: 'Freshly wrapped Basilissa chicken shawarma with fries and dipping sauce',
   },
   {
@@ -28,7 +28,7 @@ const FOOD_ITEMS: FoodItem[] = [
     label: 'Burgers',
     title: 'Gourmet Burgers',
     description: 'Juicy grilled beef patty with melted cheddar, crisp greens, and house sauce in a toasted brioche bun.',
-    image: '/images/basilissa/burger.jpg',
+    image: '/images/basilissa/food/burger.jpg',
     alt: 'Basilissa gourmet burger with golden fries and dipping sauce',
   },
   {
@@ -36,7 +36,7 @@ const FOOD_ITEMS: FoodItem[] = [
     label: 'Pizza',
     title: 'Artisanal Pizza',
     description: 'Freshly baked with savory chicken, sweet peppers, melted mozzarella, and fresh basil.',
-    image: '/images/basilissa/pizza.jpg',
+    image: '/images/basilissa/food/pizza.jpg',
     alt: 'Freshly baked Basilissa artisanal pizza on a wooden board',
   },
   {
@@ -44,7 +44,7 @@ const FOOD_ITEMS: FoodItem[] = [
     label: 'Rice meals',
     title: 'Rice Meals',
     description: 'Signature grilled chicken served with seasoned fried rice, golden omelette, and fresh coleslaw.',
-    image: '/images/basilissa/cta-chicken-rice.jpg',
+    image: '/images/basilissa/food/cta-chicken-rice.jpg',
     alt: 'Basilissa grilled chicken and seasoned fried rice meal platter',
   },
   {
@@ -52,7 +52,7 @@ const FOOD_ITEMS: FoodItem[] = [
     label: 'Chicken',
     title: 'Spicy Chicken',
     description: 'Crispy outside, fiery inside, expertly fried and finished with toasted sesame seeds.',
-    image: '/images/basilissa/spicy-chicken.jpg',
+    image: '/images/basilissa/food/spicy-chicken.jpg',
     alt: 'Basilissa spicy fried chicken in a takeaway box',
   },
   {
@@ -60,7 +60,7 @@ const FOOD_ITEMS: FoodItem[] = [
     label: 'Sides',
     title: 'Sides & Extras',
     description: 'Golden fried plantains, seasoned fries, fresh salads, and authentic Ghanaian specialty sauces.',
-    image: '/images/basilissa/tableware.jpg',
+    image: '/images/basilissa/food/tableware.jpg',
     alt: 'Basilissa traditional sides, plantains, and table accompaniments',
   },
   {
@@ -69,7 +69,7 @@ const FOOD_ITEMS: FoodItem[] = [
     sublabel: 'Drinks and Desserts…',
     title: 'Drinks & Desserts',
     description: 'Fresh juices, fruit smoothies, cakes, and sweet baked treats from our Nominom collection.',
-    image: '/images/basilissa/drinks-desserts.jpg',
+    image: '/images/basilissa/food/drinks-desserts.jpg',
     alt: 'Nominom fresh juices, cake, and sweet pastries',
   },
 ];
@@ -131,7 +131,7 @@ export default function BasilissaPage() {
                     .hero p{font-size:18px;max-width:430px;margin-bottom:34px}
                     .hero-img img{width:100%;height:100%;object-fit:cover;min-height:420px}
                     .cta-row{display:flex;gap:12px;flex-wrap:wrap}
-                    .strip{height:89px;background:var(--yellow) url(/images/basilissa/strip-pattern.jpg) center/auto 100% repeat-x}
+                    .strip{height:89px;background:var(--yellow) url(/images/basilissa/hero/strip-pattern.jpg) center/auto 100% repeat-x}
 
                     /* About */
                     .about{padding:136px 0}
@@ -198,7 +198,7 @@ export default function BasilissaPage() {
                     .card .textlink{margin-top:auto;align-self:flex-start;font-size:12px}
 
                     /* Corporate */
-                    .corp{position:relative;padding:136px 0 136px;background:url(/images/basilissa/corp-bg-pattern.jpg) left 40px/840px auto no-repeat,url(/images/basilissa/corp-bg-bottom.jpg) left bottom/840px auto no-repeat}
+                    .corp{position:relative;padding:136px 0 136px;background:url(/images/basilissa/corporate/corp-bg-pattern.jpg) left 40px/840px auto no-repeat,url(/images/basilissa/corporate/corp-bg-bottom.jpg) left bottom/840px auto no-repeat}
                     .corp-grid{display:grid;grid-template-columns:minmax(0,520fr) minmax(0,887fr);max-width:1440px;margin:0 auto;align-items:start}
                     .corp-copy{padding:20px 16px 0 var(--gutter)}
                     .corp h2{font-size:clamp(32px,3.3vw,46px);margin-bottom:40px}
@@ -215,7 +215,7 @@ export default function BasilissaPage() {
                     /* Careers */
                     .careers{background:var(--blue)}
                     .careers-grid{display:grid;grid-template-columns:minmax(0,480fr) minmax(0,960fr);max-width:1440px;margin:0 auto}
-                    .careers-pattern{background:url(/images/basilissa/careers-pattern.jpg) center top/cover;border-right:1px solid rgba(18,19,15,.25);min-height:520px}
+                    .careers-pattern{background:url(/images/basilissa/careers/careers-pattern.jpg) center top/cover;border-right:1px solid rgba(18,19,15,.25);min-height:520px}
                     .careers-copy{padding:118px var(--gutter) 112px 80px}
                     .careers h2{margin-bottom:44px}
                     .careers-copy>p{color:var(--black);font-size:17px;max-width:620px;margin-bottom:30px}
@@ -296,7 +296,7 @@ export default function BasilissaPage() {
       
       <header>
         <nav className="nav wrap" aria-label="Main">
-          <a className="logo" href="#home" aria-label="Basilissa home"><Image src="/images/basiliss.png" alt="Basilissa" width={160} height={56} priority className="h-14 w-auto" /></a>
+          <a className="logo" href="#home" aria-label="Basilissa home"><Image src="/images/basilissa/brand/basiliss.png" alt="Basilissa" width={160} height={56} priority className="h-14 w-auto" /></a>
           <input type="checkbox" id="menu" aria-label="Toggle menu" />
           <ul>
             <li><a className="active" href="#home">Home</a></li>
@@ -325,14 +325,14 @@ export default function BasilissaPage() {
               <a className="btn btn-yellow" href="https://basilissa.web.app">Order Now</a>
             </div>
           </div>
-          <div className="hero-img"><Image src="/images/basilissa/hero-customer.jpg" alt="A smiling Basilissa customer pointing at the camera" width={879} height={630} priority className="w-full h-full object-cover" /></div>
+          <div className="hero-img"><Image src="/images/basilissa/hero/hero-customer.jpg" alt="A smiling Basilissa customer pointing at the camera" width={879} height={630} priority className="w-full h-full object-cover" /></div>
         </div>
         <div className="strip" role="img" aria-label="Basilissa brand pattern: La Foi, L'Amour and Adinkra symbols"></div>
       </section>
       
       <section className="about" id="about">
         <div className="wrap">
-          <Image className="about-img" src="/images/basilissa/shapergb.jpg" alt="Basilissa dining" width={400} height={600} />
+          <Image className="about-img" src="/images/basilissa/about/shapergb.jpg" alt="Basilissa dining" width={400} height={600} />
           <div>
             <div className="eyebrow">About Basilissa</div>
             <h2>More than a<br />restaurant.</h2>
@@ -359,7 +359,7 @@ export default function BasilissaPage() {
               <div className="eyebrow">The Basilissa experience</div>
               <h2>What we stand for.</h2>
             </div>
-            <Image src="/images/Layer 2.png" alt="Basilissa experience" width={351} height={57} />
+            <Image src="/images/basilissa/experience/Layer 2.png" alt="Basilissa experience" width={351} height={57} />
         </div>
           <ul className="values">
             <li><small>01</small><h3>Quality</h3><p>We are committed to quality in every part of the experience.</p></li>
@@ -454,11 +454,11 @@ export default function BasilissaPage() {
               muted
               className="food-video"
             >
-              <source src="/images/vvv.mp4" type="video/mp4" />
+              <source src="/images/basilissa/food/vvv.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
             <figure className="nomi">
-              <Image src="/images/basilissa/drinks-desserts.jpg" alt="Nominom juices, cake and pastries" width={401} height={299} />
+              <Image src="/images/basilissa/food/drinks-desserts.jpg" alt="Nominom juices, cake and pastries" width={401} height={299} />
               <figcaption><b>Drinks &amp; desserts</b><span>Fresh juices and treats from our Nominom range.</span></figcaption>
             </figure>
           </div>         
@@ -479,7 +479,7 @@ export default function BasilissaPage() {
           <div className="cards">
             <article className="card">
               <div className="card-media">
-                <Image src="/images/accramall.png" alt="Basilissa Accra Mall branch" width={406} height={286} />
+                <Image src="/images/basilissa/locations/accramall.png" alt="Basilissa Accra Mall branch" width={406} height={286} />
               </div>
               <div className="card-top">
                 <h3>Accra Mall</h3>
@@ -500,7 +500,7 @@ export default function BasilissaPage() {
 
             <article className="card">
               <div className="card-media">
-                <Image src="/images/achimota.jpg" alt="Basilissa Achimota Mall branch" width={406} height={286} />
+                <Image src="/images/basilissa/locations/achimota.jpg" alt="Basilissa Achimota Mall branch" width={406} height={286} />
               </div>
               <div className="card-top">
                 <h3>Achimota Mall</h3>
@@ -521,7 +521,7 @@ export default function BasilissaPage() {
 
             <article className="card">
               <div className="card-media">
-                <Image src="/images/westhills.png" alt="Basilissa West Hills Mall branch" width={406} height={286} />
+                <Image src="/images/basilissa/locations/westhills.png" alt="Basilissa West Hills Mall branch" width={406} height={286} />
               </div>
               <div className="card-top">
                 <h3>West Hills Mall</h3>
@@ -542,7 +542,7 @@ export default function BasilissaPage() {
 
             <article className="card">
               <div className="card-media">
-                <Image src="/images/tema.png" alt="Basilissa Tema branch" width={406} height={286} />
+                <Image src="/images/basilissa/locations/tema.png" alt="Basilissa Tema branch" width={406} height={286} />
               </div>
               <div className="card-top">
                 <h3>Tema</h3>
@@ -563,7 +563,7 @@ export default function BasilissaPage() {
 
             <article className="card">
               <div className="card-media">
-                <Image src="/images/dawhenya.png" alt="Basilissa Dawhenya branch" width={406} height={286} />
+                <Image src="/images/basilissa/locations/dawhenya.png" alt="Basilissa Dawhenya branch" width={406} height={286} />
               </div>
               <div className="card-top">
                 <h3>Dawhenya</h3>
@@ -584,7 +584,7 @@ export default function BasilissaPage() {
 
             <article className="card">
               <div className="card-media">
-                <Image src="/images/afienya.jpg" alt="Basilissa Afienya branch" width={406} height={286} />
+                <Image src="/images/basilissa/locations/afienya.jpg" alt="Basilissa Afienya branch" width={406} height={286} />
               </div>
               <div className="card-top">
                 <h3>Afienya</h3>
@@ -619,7 +619,7 @@ export default function BasilissaPage() {
             </ul>
             <a className="btn btn-black" target="_blank" rel="noopener noreferrer" href="https://nanatrade-erp.odoo.com/contactus">Talk to our team</a>
           </div>
-          <div className="corp-img"><Image src="/images/basilissa/corp-chicken.jpg" alt="Glazed sesame chicken on a wooden board, with La Foi and L'Amour brand marks" width={887} height={680} /></div>
+          <div className="corp-img"><Image src="/images/basilissa/corporate/corp-chicken.jpg" alt="Glazed sesame chicken on a wooden board, with La Foi and L'Amour brand marks" width={887} height={680} /></div>
         </div>
       </section>
       
@@ -633,10 +633,10 @@ export default function BasilissaPage() {
             <p>Chefs, crew, managers and riders who take pride in doing things properly — every shift, at every branch.</p>
           </div>
           <div className="gallery">
-            <Image src="/images/basilissa/kitchen-flatbread.jpg" alt="A Basilissa kitchen team member preparing flatbreads" width={824} height={599} />
+            <Image src="/images/basilissa/people/kitchen-flatbread.jpg" alt="A Basilissa kitchen team member preparing flatbreads" width={824} height={599} />
             <div>
-              <Image src="/images/basilissa/crew-menu.jpg" alt="A Basilissa crew member holding a menu in a restaurant" width={401} height={287} />
-              <Image src="/images/basilissa/delivery-rider.jpg" alt="A Basilissa delivery rider on a motorbike" width={401} height={287} />
+              <Image src="/images/basilissa/people/crew-menu.jpg" alt="A Basilissa crew member holding a menu in a restaurant" width={401} height={287} />
+              <Image src="/images/basilissa/people/delivery-rider.jpg" alt="A Basilissa delivery rider on a motorbike" width={401} height={287} />
             </div>
           </div>
         </div>
@@ -662,10 +662,10 @@ export default function BasilissaPage() {
             <ul><li>Quality.</li><li>Discipline.</li><li>Professionalism.</li><li>Customer centricity.</li><li>Growth.</li></ul>
           </div>
           <div className="pillars">
-            <div><div className="ico"><Image src="/images/basilissa/symbol-la-foi.png" alt="La Foi" width={124} height={48} /></div><h3>Faith</h3><p>Trust and confidence as a core value — a disciplined conviction behind every product.</p></div>
-            <div><div className="ico"><Image src="/images/basilissa/symbol-nyame-ne-hene.png" alt="Nyame Ne Hene symbol" width={72} height={79} /></div><h3>Nyame Ne Hene · Ethical integrity</h3><p>God is King — fairness, transparency and principled action in all we do.</p></div>
-            <div><div className="ico"><Image src="/images/basilissa/symbol-lamour.png" alt="L'Amour" width={136} height={38} /></div><h3>Love</h3><p>Every product and service is made with care, thoughtfulness and dedication.</p></div>
-            <div><div className="ico"><Image src="/images/basilissa/symbol-mmere-dane.png" alt="Mmere Dane symbol" width={80} height={79} /></div><h3>Mmere Dane · Customer centricity</h3><p>Time changes — we adapt to our customers’ needs while their well-being stays central.</p></div>
+            <div><div className="ico"><Image src="/images/basilissa/pillars/symbol-la-foi.png" alt="La Foi" width={124} height={48} /></div><h3>Faith</h3><p>Trust and confidence as a core value — a disciplined conviction behind every product.</p></div>
+            <div><div className="ico"><Image src="/images/basilissa/pillars/symbol-nyame-ne-hene.png" alt="Nyame Ne Hene symbol" width={72} height={79} /></div><h3>Nyame Ne Hene · Ethical integrity</h3><p>God is King — fairness, transparency and principled action in all we do.</p></div>
+            <div><div className="ico"><Image src="/images/basilissa/pillars/symbol-lamour.png" alt="L'Amour" width={136} height={38} /></div><h3>Love</h3><p>Every product and service is made with care, thoughtfulness and dedication.</p></div>
+            <div><div className="ico"><Image src="/images/basilissa/pillars/symbol-mmere-dane.png" alt="Mmere Dane symbol" width={80} height={79} /></div><h3>Mmere Dane · Customer centricity</h3><p>Time changes — we adapt to our customers’ needs while their well-being stays central.</p></div>
           </div>
         </div>
       </section>
@@ -680,16 +680,16 @@ export default function BasilissaPage() {
               <a className="btn btn-yellow" href="https://basilissa.web.app">Order Now</a>
             </div>
           </div>
-          <Image className="cta-img" src="/images/basilissa/cta-chicken-rice.jpg" alt="A Basilissa plate of grilled chicken, fried rice, omelette and coleslaw" width={522} height={514} />
+          <Image className="cta-img" src="/images/basilissa/food/cta-chicken-rice.jpg" alt="A Basilissa plate of grilled chicken, fried rice, omelette and coleslaw" width={522} height={514} />
         </div>
       </section>
       </main>
       
-      <div className="band"><Image src="/images/basilissa/brand-symbols-band.jpg" alt="Basilissa brand symbols" width={500} height={121} /></div>
+      <div className="band"><Image src="/images/basilissa/brand/brand-symbols-band.jpg" alt="Basilissa brand symbols" width={500} height={121} /></div>
       <footer id="contact">
         <div className="wrap">
           <div>
-            <a className="logo" href="#home"><Image src="/images/basiliss.png" alt="Basilissa" width={160} height={56} className="h-14 w-auto" /></a>
+            <a className="logo" href="#home"><Image src="/images/basilissa/brand/basiliss.png" alt="Basilissa" width={160} height={56} className="h-14 w-auto" /></a>
             <p>A Ghanaian food brand and subsidiary of Nanatrade Limited.<br />Since 2009.</p>
           </div>
           <div>

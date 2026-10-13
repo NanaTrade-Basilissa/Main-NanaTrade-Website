@@ -66,8 +66,8 @@ export function CustomerExperience() {
       <div className="grid min-h-[100svh] grid-cols-1 items-center lg:grid-cols-12">
         <div className="relative order-2 h-[45vh] lg:order-1 lg:col-span-5 lg:h-full">
           <Image
-            src="/images/basilissa-hospitality-manager.jpg"
-            alt="A Basilissa hospitality manager greeting a guest"
+            src="/images/basilissa/people/crew-menu.jpg"
+            alt="A Basilissa crew member greeting a guest"
             fill
             sizes="(min-width: 1024px) 42vw, 100vw"
             className="object-cover"
