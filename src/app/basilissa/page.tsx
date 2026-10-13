@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
-import { motion, AnimatePresence, type Variants } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface HeroSlide {
   id: string;
@@ -159,21 +159,17 @@ const FOOD_ITEMS: FoodItem[] = [
 
 export default function BasilissaPage() {
   const [activeFood, setActiveFood] = useState<FoodItem>(FOOD_ITEMS[0]);
-  const [[currentSlide, direction], setSlidePage] = useState<[number, number]>([0, 0]);
+  const [currentSlide, setCurrentSlide] = useState(0);
   const [isHeroPaused, setIsHeroPaused] = useState(false);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
 
   const paginateHero = useCallback((newDirection: number) => {
-    setSlidePage(([prev]) => {
+    setCurrentSlide((prev) => {
       let nextIndex = prev + newDirection;
       if (nextIndex < 0) nextIndex = HERO_SLIDES.length - 1;
       if (nextIndex >= HERO_SLIDES.length) nextIndex = 0;
-      return [nextIndex, newDirection];
+      return nextIndex;
     });
-  }, []);
-
-  const goToHeroSlide = useCallback((index: number) => {
-    setSlidePage(([prev]) => [index, index > prev ? 1 : -1]);
   }, []);
 
   useEffect(() => {
@@ -203,33 +199,6 @@ export default function BasilissaPage() {
   };
 
   const activeHeroSlide = HERO_SLIDES[currentSlide];
-
-  const heroImageVariants: Variants = {
-    enter: (dir: number) => ({
-      x: dir > 0 ? '100%' : '-100%',
-      opacity: 0,
-      scale: 1.04,
-    }),
-    center: {
-      x: '0%',
-      opacity: 1,
-      scale: 1,
-      transition: {
-        x: { type: 'spring', stiffness: 240, damping: 28 },
-        opacity: { duration: 0.5 },
-        scale: { duration: 0.7, ease: 'easeOut' },
-      },
-    },
-    exit: (dir: number) => ({
-      x: dir < 0 ? '100%' : '-100%',
-      opacity: 0,
-      scale: 0.98,
-      transition: {
-        x: { type: 'spring', stiffness: 240, damping: 28 },
-        opacity: { duration: 0.4 },
-      },
-    }),
-  };
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: `
@@ -279,27 +248,18 @@ export default function BasilissaPage() {
                     .burger span{width:24px;height:2px;background:var(--black)}
 
                     /* Hero */
-                    .hero{position:relative;display:grid;grid-template-columns:minmax(0,560fr) minmax(0,880fr);max-width:1440px;margin:0 auto;align-items:stretch;min-height:580px}
-                    .hero-copy{padding:70px 48px 70px var(--gutter);display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2}
-                    .hero h1{font-size:clamp(38px,3.7vw,53px);margin-bottom:28px}
-                    .hero p{font-size:18px;max-width:430px;margin-bottom:32px}
-                    .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px}
-                    .hero-controls{display:flex;align-items:center;gap:16px;padding-top:16px;border-top:1px solid var(--line);max-width:440px}
-                    .hero-dots{display:flex;align-items:center;gap:8px}
-                    .hero-dot{height:8px;width:24px;border-radius:4px;background:rgba(18,19,15,.15);border:none;cursor:pointer;padding:0;transition:all .3s cubic-bezier(.16,1,.3,1)}
-                    .hero-dot:hover{background:rgba(18,19,15,.35)}
-                    .hero-dot.active{background:var(--yellow);width:44px}
-                    .hero-counter{font-family:var(--head);font-size:13px;letter-spacing:.08em;font-weight:700;color:var(--black);margin-left:auto}
-                    .hero-arrows{display:flex;align-items:center;gap:8px}
-                    .hero-nav-btn{width:36px;height:36px;border-radius:50%;background:#fff;border:1.5px solid var(--black);display:flex;align-items:center;justify-content:center;color:var(--black);cursor:pointer;transition:all .2s ease}
-                    .hero-nav-btn:hover{background:var(--yellow);border-color:var(--yellow);transform:scale(1.05)}
-                    .hero-img{position:relative;width:100%;min-height:480px;overflow:hidden;background:#12130F;user-select:none}
+                    .hero{position:relative;max-width:1440px;margin:0 auto;aspect-ratio:1440/720;width:100%;min-height:540px;overflow:hidden;background:#fff}
+                    .hero-slider{position:absolute;inset:0;width:100%;height:100%;z-index:1;user-select:none}
                     .hero-slide-item{position:absolute;inset:0;width:100%;height:100%}
-                    .hero-img img{width:100%;height:100%;object-fit:cover}
-                    .hero-img-overlay-controls{position:absolute;bottom:20px;right:20px;z-index:10;display:flex;align-items:center;gap:10px;background:rgba(18,19,15,.75);backdrop-filter:blur(8px);padding:6px 14px;border-radius:30px;color:#fff;box-shadow:0 8px 24px rgba(0,0,0,.2)}
-                    .hero-img-overlay-btn{background:none;border:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;transition:all .2s ease}
-                    .hero-img-overlay-btn:hover{background:var(--yellow);color:var(--black)}
-                    .hero-img-overlay-counter{font-family:var(--head);font-size:12px;font-weight:700;letter-spacing:.12em;color:#fff;padding:0 4px}
+                    .hero-slide-img{width:100%;height:100%;object-fit:cover;object-position:right center}
+                    .hero-copy{position:relative;z-index:2;width:min(560px,39%);height:100%;display:flex;flex-direction:column;justify-content:center;padding:48px 28px 48px var(--gutter);pointer-events:auto}
+                    .hero h1{font-size:clamp(34px,3.5vw,53px);margin-bottom:24px}
+                    .hero p{font-size:clamp(15px,1.25vw,18px);max-width:430px;margin-bottom:28px}
+                    .cta-row{display:flex;gap:12px;flex-wrap:wrap}
+                    .hero-pill-controls{position:absolute;bottom:28px;right:28px;z-index:10;display:flex;align-items:center;gap:10px;background:rgba(18,19,15,.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:6px 14px;border-radius:30px;color:#fff;box-shadow:0 8px 24px rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.12);user-select:none}
+                    .hero-pill-btn{background:none;border:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;transition:all .2s ease;padding:0}
+                    .hero-pill-btn:hover{background:var(--yellow);color:var(--black);transform:scale(1.1)}
+                    .hero-pill-counter{font-family:var(--head);font-size:12px;font-weight:700;letter-spacing:.12em;color:#fff;padding:0 4px}
                     .strip{height:89px;background:var(--yellow) url(/images/basilissa/hero/strip-pattern.jpg) center/auto 100% repeat-x}
 
                     /* About */
@@ -432,8 +392,11 @@ export default function BasilissaPage() {
                     .nav ul a{display:block;padding:12px 0}
                     #menu:checked~ul{display:flex}
                     .nav>.btn{padding:12px 16px;margin-left:auto}
-                    .hero,.about .wrap,.food-grid,.food-row,.loc-head,.corp-grid,.gallery,.careers-grid,.way-head,.cta .wrap{grid-template-columns:minmax(0,1fr)}
-                    .hero-copy{padding:56px var(--gutter)}
+                    .about .wrap,.food-grid,.food-row,.loc-head,.corp-grid,.gallery,.careers-grid,.way-head,.cta .wrap{grid-template-columns:minmax(0,1fr)}
+                    .hero{aspect-ratio:auto;min-height:auto;display:flex;flex-direction:column}
+                    .hero-copy{width:100%;max-width:100%;height:auto;padding:56px var(--gutter) 40px}
+                    .hero-slider{position:relative;inset:auto;width:100%;height:380px;min-height:300px;overflow:hidden}
+                    .hero-pill-controls{bottom:18px;right:18px}
                     .about,.stand,.food,.locations,.corp,.people,.way{padding-top:80px;padding-bottom:80px}
                     .about-img{max-width:min(400px,100%)}
                     .stand-head{flex-direction:column;align-items:flex-start}
@@ -448,6 +411,8 @@ export default function BasilissaPage() {
                     footer .wrap{grid-template-columns:1fr 1fr;row-gap:40px;padding-top:64px}
                     }
                     @media (max-width:600px){
+                    .hero-slider{height:300px;min-height:250px}
+                    .hero-pill-controls{bottom:14px;right:14px}
                     .cols,.cards,.tracks,.pillars{grid-template-columns:minmax(0,1fr)}
                     .stats,.values{grid-template-columns:1fr 1fr}
                     .strip{height:60px}
@@ -490,81 +455,18 @@ export default function BasilissaPage() {
         onMouseLeave={() => setIsHeroPaused(false)}
       >
         <div className="hero">
-          <div className="hero-copy">
-            <motion.div
-              key={activeHeroSlide.id}
-              initial={{ opacity: 0.9 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.35 }}
-            >
-              <div className="eyebrow">{activeHeroSlide.eyebrow}</div>
-              <h1>{activeHeroSlide.title}</h1>
-              <p>{activeHeroSlide.description}</p>
-              <div className="cta-row">
-                <a className="btn btn-black" href={activeHeroSlide.primaryCta.href}>
-                  {activeHeroSlide.primaryCta.label}
-                </a>
-                <a className="btn btn-yellow" href={activeHeroSlide.secondaryCta.href}>
-                  {activeHeroSlide.secondaryCta.label}
-                </a>
-              </div>
-            </motion.div>
-
-            <div className="hero-controls" aria-label="Hero slider controls">
-              <div className="hero-dots" role="tablist" aria-label="Slide selectors">
-                {HERO_SLIDES.map((slide, idx) => (
-                  <button
-                    key={slide.id}
-                    type="button"
-                    role="tab"
-                    aria-selected={idx === currentSlide}
-                    aria-label={`Go to slide ${idx + 1}`}
-                    onClick={() => goToHeroSlide(idx)}
-                    className={`hero-dot ${idx === currentSlide ? 'active' : ''}`}
-                  />
-                ))}
-              </div>
-              <span className="hero-counter" aria-live="polite">
-                0{currentSlide + 1} / 0{HERO_SLIDES.length}
-              </span>
-              <div className="hero-arrows">
-                <button
-                  type="button"
-                  onClick={() => paginateHero(-1)}
-                  aria-label="Previous slide"
-                  className="hero-nav-btn"
-                >
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="15 18 9 12 15 6" />
-                  </svg>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => paginateHero(1)}
-                  aria-label="Next slide"
-                  className="hero-nav-btn"
-                >
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="9 18 15 12 9 6" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
-
           <div
-            className="hero-img"
+            className="hero-slider"
             onTouchStart={handleHeroTouchStart}
             onTouchEnd={handleHeroTouchEnd}
           >
-            <AnimatePresence custom={direction} initial={false}>
+            <AnimatePresence initial={false}>
               <motion.div
                 key={activeHeroSlide.id}
-                custom={direction}
-                variants={heroImageVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.8, ease: 'easeInOut' }}
                 className="hero-slide-item"
               >
                 <Image
@@ -572,37 +474,66 @@ export default function BasilissaPage() {
                   alt={activeHeroSlide.alt}
                   fill
                   priority={currentSlide === 0}
-                  sizes="(max-width: 900px) 100vw, 60vw"
-                  className="w-full h-full object-cover"
+                  sizes="(max-width: 960px) 100vw, 1440px"
+                  className="hero-slide-img"
                 />
               </motion.div>
             </AnimatePresence>
 
-            <div className="hero-img-overlay-controls" aria-hidden="true">
-              <button
-                type="button"
-                onClick={() => paginateHero(-1)}
-                aria-label="Previous slide"
-                className="hero-img-overlay-btn"
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="15 18 9 12 15 6" />
-                </svg>
-              </button>
-              <span className="hero-img-overlay-counter">
-                0{currentSlide + 1} / 0{HERO_SLIDES.length}
-              </span>
-              <button
-                type="button"
-                onClick={() => paginateHero(1)}
-                aria-label="Next slide"
-                className="hero-img-overlay-btn"
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="9 18 15 12 9 6" />
-                </svg>
-              </button>
+            <div style={{ display: 'none' }} aria-hidden="true">
+              {HERO_SLIDES.map((slide, idx) => (
+                idx !== currentSlide && (
+                  <Image
+                    key={`preload-${slide.id}`}
+                    src={slide.image}
+                    alt=""
+                    width={1440}
+                    height={720}
+                    priority
+                  />
+                )
+              ))}
             </div>
+          </div>
+
+          <div className="hero-copy">
+            <div className="eyebrow">{activeHeroSlide.eyebrow}</div>
+            <h1>{activeHeroSlide.title}</h1>
+            <p>{activeHeroSlide.description}</p>
+            <div className="cta-row">
+              <a className="btn btn-black" href={activeHeroSlide.primaryCta.href}>
+                {activeHeroSlide.primaryCta.label}
+              </a>
+              <a className="btn btn-yellow" href={activeHeroSlide.secondaryCta.href}>
+                {activeHeroSlide.secondaryCta.label}
+              </a>
+            </div>
+          </div>
+
+          <div className="hero-pill-controls" aria-label="Hero carousel navigation">
+            <button
+              type="button"
+              onClick={() => paginateHero(-1)}
+              aria-label="Previous slide"
+              className="hero-pill-btn"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+            </button>
+            <span className="hero-pill-counter" aria-live="polite">
+              0{currentSlide + 1} / 0{HERO_SLIDES.length}
+            </span>
+            <button
+              type="button"
+              onClick={() => paginateHero(1)}
+              aria-label="Next slide"
+              className="hero-pill-btn"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </button>
           </div>
         </div>
         <div className="strip" role="img" aria-label="Basilissa brand pattern: La Foi, L'Amour and Adinkra symbols"></div>
