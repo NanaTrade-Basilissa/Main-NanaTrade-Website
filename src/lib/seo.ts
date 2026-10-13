@@ -1,4 +1,4 @@
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://nanatrade.com';
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://nanatradeltd.com';
 
 export const BASE_KEYWORDS = [
   'NanaTrade',
