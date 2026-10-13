@@ -379,6 +379,17 @@ export default function BasilissaPage() {
                     /* Responsive */
                     @media (max-width:1100px){
                     .nav ul{gap:22px}
+                    .hero{min-height:440px}
+                    .hero-copy{width:39%;padding:28px 14px 28px clamp(16px,3vw,36px)}
+                    .hero .eyebrow{font-size:10px;margin-bottom:10px;gap:8px}
+                    .hero .eyebrow::before{width:16px;height:2px}
+                    .hero h1{font-size:clamp(22px,2.9vw,30px);line-height:1.02;margin-bottom:12px}
+                    .hero p{font-size:clamp(11px,1.35vw,14px);line-height:1.45;max-width:310px;margin-bottom:14px}
+                    .cta-row{gap:8px}
+                    .cta-row .btn{padding:9px 12px;font-size:10px;letter-spacing:.06em;white-space:nowrap}
+                    .hero-pill-controls{bottom:16px;right:16px;padding:5px 12px}
+                    .hero-pill-btn{width:24px;height:24px}
+                    .hero-pill-counter{font-size:11px}
                     .about .wrap{grid-template-columns:300px 1fr;gap:56px}
                     .values{grid-template-columns:repeat(3,1fr);row-gap:48px}
                     .cards{grid-template-columns:repeat(2,1fr)}
@@ -393,10 +404,6 @@ export default function BasilissaPage() {
                     #menu:checked~ul{display:flex}
                     .nav>.btn{padding:12px 16px;margin-left:auto}
                     .about .wrap,.food-grid,.food-row,.loc-head,.corp-grid,.gallery,.careers-grid,.way-head,.cta .wrap{grid-template-columns:minmax(0,1fr)}
-                    .hero{aspect-ratio:auto;min-height:auto;display:flex;flex-direction:column}
-                    .hero-copy{width:100%;max-width:100%;height:auto;padding:56px var(--gutter) 40px}
-                    .hero-slider{position:relative;inset:auto;width:100%;height:380px;min-height:300px;overflow:hidden}
-                    .hero-pill-controls{bottom:18px;right:18px}
                     .about,.stand,.food,.locations,.corp,.people,.way{padding-top:80px;padding-bottom:80px}
                     .about-img{max-width:min(400px,100%)}
                     .stand-head{flex-direction:column;align-items:flex-start}
@@ -411,10 +418,18 @@ export default function BasilissaPage() {
                     footer .wrap{grid-template-columns:1fr 1fr;row-gap:40px;padding-top:64px}
                     }
                     @media (max-width:640px){
-                    .hero-pill-controls{display:none}
+                    .hero{aspect-ratio:auto;min-height:auto;display:flex;flex-direction:column}
+                    .hero-copy{width:100%;max-width:100%;height:auto;padding:36px var(--gutter) 40px}
+                    .hero .eyebrow{font-size:11px;margin-bottom:16px;gap:10px}
+                    .hero .eyebrow::before{width:20px;height:3px}
+                    .hero h1{font-size:clamp(32px,8vw,44px);line-height:.98;margin-bottom:20px}
+                    .hero p{font-size:15px;max-width:100%;margin-bottom:24px;line-height:1.55}
+                    .hero-slider{position:relative;inset:auto;width:100%;height:320px;min-height:260px;overflow:hidden}
+                    .hero-pill-controls{display:none !important}
+                    .cta-row{display:flex;flex-direction:row;flex-wrap:nowrap;gap:8px;width:100%}
+                    .cta-row .btn{flex:1 1 0%;min-width:0;padding:14px 8px;font-size:11px;letter-spacing:.06em;text-align:center;white-space:nowrap}
                     }
                     @media (max-width:600px){
-                    .hero-slider{height:300px;min-height:250px}
                     .cols,.cards,.tracks,.pillars{grid-template-columns:minmax(0,1fr)}
                     .stats,.values{grid-template-columns:1fr 1fr}
                     .strip{height:60px}
