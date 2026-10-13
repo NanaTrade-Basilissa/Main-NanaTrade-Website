@@ -157,6 +157,94 @@ const FOOD_ITEMS: FoodItem[] = [
   },
 ];
 
+interface LocationItem {
+  id: string;
+  name: string;
+  number: string;
+  location: string;
+  hours: string;
+  phone: string;
+  phoneHref: string;
+  image: string;
+  alt: string;
+  mapUrl: string;
+}
+
+const LOCATIONS: LocationItem[] = [
+  {
+    id: 'accra-mall',
+    name: 'Accra Mall',
+    number: '01',
+    location: 'Accra Mall, Tetteh Quarshie, Accra',
+    hours: 'Mon–Sat 9–23 · Sun 10–21',
+    phone: '054 457 7777',
+    phoneHref: 'tel:+233544577777',
+    image: '/images/basilissa/locations/accramall.png',
+    alt: 'Basilissa Accra Mall branch',
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=Basilissa+Accra+Mall',
+  },
+  {
+    id: 'achimota-mall',
+    name: 'Achimota Mall',
+    number: '02',
+    location: 'Achimota Mall, Achimota, Accra',
+    hours: 'Mon–Sat 9–23 · Sun 10–21',
+    phone: '054 377 1778',
+    phoneHref: 'tel:+233543771778',
+    image: '/images/basilissa/locations/achimota.jpg',
+    alt: 'Basilissa Achimota Mall branch',
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=Basilissa+Achimota+Mall',
+  },
+  {
+    id: 'westhills-mall',
+    name: 'West Hills Mall',
+    number: '03',
+    location: 'West Hills Mall, Weija, Accra',
+    hours: 'Mon–Sat 9–23 · Sun 10–21',
+    phone: '054 412 5506',
+    phoneHref: 'tel:+233544125506',
+    image: '/images/basilissa/locations/westhills.png',
+    alt: 'Basilissa West Hills Mall branch',
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=Basilissa+West+Hills+Mall+Weija',
+  },
+  {
+    id: 'tema',
+    name: 'Tema',
+    number: '04',
+    location: 'Community 6, Tema',
+    hours: 'Mon–Sat 9–23 · Sun 10–21',
+    phone: '054 377 1777',
+    phoneHref: 'tel:+233543771777',
+    image: '/images/basilissa/locations/tema.png',
+    alt: 'Basilissa Tema branch',
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=Basilissa+Community+6+Tema',
+  },
+  {
+    id: 'dawhenya',
+    name: 'Dawhenya',
+    number: '05',
+    location: 'Community 25, Dawhenya',
+    hours: 'Mon–Sat 9–23 · Sun 10–21',
+    phone: '054 012 5497',
+    phoneHref: 'tel:+233540125497',
+    image: '/images/basilissa/locations/dawhenya.png',
+    alt: 'Basilissa Dawhenya branch',
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=Basilissa+Dawhenya',
+  },
+  {
+    id: 'afienya',
+    name: 'Afienya',
+    number: '06',
+    location: 'Afienya',
+    hours: 'Mon–Sat 9–23 · Sun 10–21',
+    phone: '054 010 2485',
+    phoneHref: 'tel:+233540102485',
+    image: '/images/basilissa/locations/afienya.jpg',
+    alt: 'Basilissa Afienya branch',
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=Basilissa+Afienya',
+  },
+];
+
 export default function BasilissaPage() {
   const [activeFood, setActiveFood] = useState<FoodItem>(FOOD_ITEMS[0]);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -314,17 +402,22 @@ export default function BasilissaPage() {
                     /* Locations */
                     .locations{background:var(--beige);padding:132px 0 126px}
                     .loc-head{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:48px;align-items:end;margin-bottom:68px}
-                    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-                    .card{position:relative;background:#fff;border:3px solid var(--blue);border-radius:3px;padding:32px 32px 34px;min-height:284px;display:flex;flex-direction:column;overflow:hidden}
-                    /* To add the faded branch photo behind a card, set style="--photo:url(images/accra-mall.jpg)" on the .card */
-                    .card::before{content:"";position:absolute;inset:0;background:var(--photo,none) center/cover;opacity:.28}
-                    .card>*{position:relative}
-                    .card-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:18px}
-                    .card h3{font-size:25px}
-                    .card small{font-size:13px;font-weight:600;color:var(--olive)}
-                    .card dl{display:grid;grid-template-columns:76px 1fr;row-gap:8px;font-size:14px;font-weight:500}
-                    .card dt{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;align-self:center}
-                    .card .textlink{margin-top:auto;align-self:flex-start;font-size:12px}
+                    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+                    .card{position:relative;background:#12130F;border:3px solid var(--blue);border-radius:3px;min-height:286px;aspect-ratio:406/286;overflow:hidden;cursor:pointer;transition:border-color .25s ease,box-shadow .25s ease,transform .25s ease}
+                    .card:hover{border-color:var(--yellow);box-shadow:0 14px 32px rgba(18,19,15,.16);transform:translateY(-2px)}
+                    .card-bg{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+                    .card-bg-img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .5s ease}
+                    .card:hover .card-bg-img{transform:scale(1.04)}
+                    .card-overlay{position:absolute;inset:0;z-index:2;background:rgba(255,255,255,.9);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);padding:26px 26px 22px;display:flex;flex-direction:column;opacity:1;visibility:visible;transition:opacity .35s ease,visibility .35s ease}
+                    .card:hover .card-overlay{opacity:0;visibility:hidden;pointer-events:none}
+                    .card:focus-within .card-overlay{opacity:1;visibility:visible;pointer-events:auto}
+                    .card-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px}
+                    .card h3{font-size:24px;color:var(--black)}
+                    .card small{font-size:13px;font-weight:700;font-family:var(--head);letter-spacing:.08em;color:var(--olive)}
+                    .card dl{display:grid;grid-template-columns:74px 1fr;row-gap:8px;font-size:13px;font-weight:500;color:var(--black);line-height:1.35}
+                    .card dt{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;align-self:center;color:var(--text)}
+                    .card dd a:hover{text-decoration:underline}
+                    .card .textlink{margin-top:auto;padding-top:10px;align-self:flex-start;font-size:12px}
 
                     /* Corporate */
                     .corp{position:relative;padding:136px 0 136px;background:url(/images/basilissa/corporate/corp-bg-pattern.jpg) left 40px/840px auto no-repeat,url(/images/basilissa/corporate/corp-bg-bottom.jpg) left bottom/840px auto no-repeat}
@@ -428,6 +521,8 @@ export default function BasilissaPage() {
                     .hero-pill-controls{display:none !important}
                     .cta-row{display:flex;flex-direction:row;flex-wrap:nowrap;gap:8px;width:100%}
                     .cta-row .btn{flex:1 1 0%;min-width:0;padding:14px 8px;font-size:11px;letter-spacing:.06em;text-align:center;white-space:nowrap}
+                    .card{min-height:270px;aspect-ratio:auto}
+                    .card-overlay{padding:22px 20px 20px}
                     }
                     @media (max-width:600px){
                     .cols,.cards,.tracks,.pillars{grid-template-columns:minmax(0,1fr)}
@@ -570,7 +665,7 @@ export default function BasilissaPage() {
               <div><b>2009</b><span>Founded in Ghana</span></div>
               <div><b>6</b><span>Branches in Greater Accra</span></div>
               {/* TODO: replace placeholder with the real headcount */}
-              <div><b>[000+]</b><span>People employed</span></div>
+              <div><b>[200+]</b><span>People employed</span></div>
               <div><b>Global</b><span>Franchise ambition</span></div>
             </div>
             <a className="textlink" href="#way">Read our story</a>
@@ -703,131 +798,62 @@ export default function BasilissaPage() {
             </p>
           </div>
           <div className="cards">
-            <article className="card">
-              <div className="card-media">
-                <Image src="/images/basilissa/locations/accramall.png" alt="Basilissa Accra Mall branch" width={406} height={286} />
-              </div>
-              <div className="card-top">
-                <h3>Accra Mall</h3>
-                <small>01</small>
-              </div>
-              <dl>
-                <dt>Location</dt>
-                <dd>Accra Mall, Tetteh Quarshie, Accra</dd>
-                <dt>Hours</dt>
-                <dd>Mon–Sat 9–23 · Sun 10–21</dd>
-                <dt>Contact</dt>
-                <dd><a href="tel:+233544577777">054 457 7777</a></dd>
-              </dl>
-              <a className="textlink" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/?api=1&query=Basilissa+Accra+Mall">
-                Get directions
-              </a>
-            </article>
-
-            <article className="card">
-              <div className="card-media">
-                <Image src="/images/basilissa/locations/achimota.jpg" alt="Basilissa Achimota Mall branch" width={406} height={286} />
-              </div>
-              <div className="card-top">
-                <h3>Achimota Mall</h3>
-                <small>02</small>
-              </div>
-              <dl>
-                <dt>Location</dt>
-                <dd>Achimota Mall, Achimota, Accra</dd>
-                <dt>Hours</dt>
-                <dd>Mon–Sat 9–23 · Sun 10–21</dd>
-                <dt>Contact</dt>
-                <dd><a href="tel:+233543771778">054 377 1778</a></dd>
-              </dl>
-              <a className="textlink" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/?api=1&query=Basilissa+Achimota+Mall">
-                Get directions
-              </a>
-            </article>
-
-            <article className="card">
-              <div className="card-media">
-                <Image src="/images/basilissa/locations/westhills.png" alt="Basilissa West Hills Mall branch" width={406} height={286} />
-              </div>
-              <div className="card-top">
-                <h3>West Hills Mall</h3>
-                <small>03</small>
-              </div>
-              <dl>
-                <dt>Location</dt>
-                <dd>West Hills Mall, Weija, Accra</dd>
-                <dt>Hours</dt>
-                <dd>Mon–Sat 9–23 · Sun 10–21</dd>
-                <dt>Contact</dt>
-                <dd><a href="tel:+233544125506">054 412 5506</a></dd>
-              </dl>
-              <a className="textlink" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/?api=1&query=Basilissa+West+Hills+Mall+Weija">
-                Get directions
-              </a>
-            </article>
-
-            <article className="card">
-              <div className="card-media">
-                <Image src="/images/basilissa/locations/tema.png" alt="Basilissa Tema branch" width={406} height={286} />
-              </div>
-              <div className="card-top">
-                <h3>Tema</h3>
-                <small>04</small>
-              </div>
-              <dl>
-                <dt>Location</dt>
-                <dd>Community 6, Tema</dd>
-                <dt>Hours</dt>
-                <dd>Mon–Sat 9–23 · Sun 10–21</dd>
-                <dt>Contact</dt>
-                <dd><a href="tel:+233543771777">054 377 1777</a></dd>
-              </dl>
-              <a className="textlink" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/?api=1&query=Basilissa+Community+6+Tema">
-                Get directions
-              </a>
-            </article>
-
-            <article className="card">
-              <div className="card-media">
-                <Image src="/images/basilissa/locations/dawhenya.png" alt="Basilissa Dawhenya branch" width={406} height={286} />
-              </div>
-              <div className="card-top">
-                <h3>Dawhenya</h3>
-                <small>05</small>
-              </div>
-              <dl>
-                <dt>Location</dt>
-                <dd>Community 25, Dawhenya</dd>
-                <dt>Hours</dt>
-                <dd>Mon–Sat 9–23 · Sun 10–21</dd>
-                <dt>Contact</dt>
-                <dd><a href="tel:+233540125497">054 012 5497</a></dd>
-              </dl>
-              <a className="textlink" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/?api=1&query=Basilissa+Dawhenya">
-                Get directions
-              </a>
-            </article>
-
-            <article className="card">
-              <div className="card-media">
-                <Image src="/images/basilissa/locations/afienya.jpg" alt="Basilissa Afienya branch" width={406} height={286} />
-              </div>
-              <div className="card-top">
-                <h3>Afienya</h3>
-                <small>06</small>
-              </div>
-              <dl>
-                <dt>Location</dt>
-                <dd>Afienya</dd>
-                <dt>Hours</dt>
-                <dd>Mon–Sat 9–23 · Sun 10–21</dd>
-                <dt>Contact</dt>
-                <dd><a href="tel:+233540102485">054 010 2485</a></dd>
-              </dl>
-              <a className="textlink" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/?api=1&query=Basilissa+Afienya">
-                Get directions
-              </a>
-            </article>
+            {LOCATIONS.map((branch) => (
+              <article
+                key={branch.id}
+                className="card"
+                role="button"
+                tabIndex={0}
+                aria-label={`View ${branch.name} location on Google Maps`}
+                onClick={() => window.open(branch.mapUrl, '_blank', 'noopener,noreferrer')}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    window.open(branch.mapUrl, '_blank', 'noopener,noreferrer');
+                  }
+                }}
+              >
+                <div className="card-bg">
+                  <Image
+                    src={branch.image}
+                    alt={branch.alt}
+                    fill
+                    sizes="(max-width: 600px) 100vw, (max-width: 1100px) 50vw, 406px"
+                    className="card-bg-img"
+                  />
+                </div>
+                <div className="card-overlay">
+                  <div className="card-top">
+                    <h3>{branch.name}</h3>
+                    <small>{branch.number}</small>
+                  </div>
+                  <dl>
+                    <dt>Location</dt>
+                    <dd>{branch.location}</dd>
+                    <dt>Hours</dt>
+                    <dd>{branch.hours}</dd>
+                    <dt>Contact</dt>
+                    <dd>
+                      <a
+                        href={branch.phoneHref}
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        {branch.phone}
+                      </a>
+                    </dd>
+                  </dl>
+                  <a
+                    className="textlink"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href={branch.mapUrl}
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    Get directions
+                  </a>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
