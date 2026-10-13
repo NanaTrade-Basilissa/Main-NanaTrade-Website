@@ -7,7 +7,7 @@ export function Growth() {
   return (
     <section id="growth" className="relative overflow-hidden bg-ink py-36 sm:py-44 lg:py-52">
       <ParallaxImage
-        src="/images/basilissa/hero/hero-customer.jpg"
+        src="/images/basilissa/hero/hero_1.jpg"
         alt="A warm, full Basilissa dining room in the evening"
         className="absolute inset-0"
         strength={50}
