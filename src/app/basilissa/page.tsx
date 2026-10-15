@@ -123,14 +123,6 @@ const FOOD_ITEMS: FoodItem[] = [
     alt: 'Freshly baked Basilissa artisanal pizza on a wooden board',
   },
   {
-    id: 'rice-meals',
-    label: 'Rice meals',
-    title: 'Rice Meals',
-    description: 'Signature grilled chicken served with seasoned fried rice, golden omelette, and fresh coleslaw.',
-    image: '/images/basilissa/food/cta-chicken-rice.jpg',
-    alt: 'Basilissa grilled chicken and seasoned fried rice meal platter',
-  },
-  {
     id: 'chicken',
     label: 'Chicken',
     title: 'Spicy Chicken',
@@ -142,9 +134,9 @@ const FOOD_ITEMS: FoodItem[] = [
     id: 'sides',
     label: 'Sides',
     title: 'Sides & Extras',
-    description: 'Golden fried plantains, seasoned fries, fresh salads, and authentic Ghanaian specialty sauces.',
-    image: '/images/basilissa/food/tableware.jpg',
-    alt: 'Basilissa traditional sides, plantains, and table accompaniments',
+    description: 'Seasoned fried rice, golden plantains, crispy fries, fresh salads, and authentic Ghanaian specialty sauces.',
+    image: '/images/basilissa/food/cta-chicken-rice.jpg',
+    alt: 'Basilissa seasoned fried rice and sides platter with grilled chicken and salad',
   },
   {
     id: 'nominom',
@@ -782,7 +774,7 @@ export default function BasilissaPage() {
               </AnimatePresence>
             </figure>
             <div className="food-side">
-              <p>Every Basilissa dish is developed around flavour and prepared to one standard across all our kitchens — from our signature chicken to rice meals, pizza and fresh drinks.</p>
+              <p>Every Basilissa dish is developed around flavour and prepared to one standard across all our kitchens — from our signature chicken and burgers to pizza, sides and fresh drinks.</p>
               <ul className="menu">
                 {FOOD_ITEMS.map((item) => {
                   const isActive = item.id === activeFood.id;

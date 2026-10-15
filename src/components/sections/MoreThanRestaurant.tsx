@@ -62,8 +62,8 @@ export function MoreThanRestaurant() {
 
           <div className="lg:col-span-5 lg:pt-16">
             <ParallaxImage
-              src="/images/basilissa/food/tableware.jpg"
-              alt="Handcrafted tableware and freshly prepared dishes at a Basilissa restaurant"
+              src="/images/basilissa/food/cta-chicken-rice.jpg"
+              alt="Freshly prepared dishes at a Basilissa restaurant"
               className="aspect-[4/5] w-full"
               sizes="(min-width: 1024px) 40vw, 100vw"
               strength={30}
